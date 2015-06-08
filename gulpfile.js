@@ -6,6 +6,7 @@ var stringColor = require('string-color');
 var gulp = require('gulp');
 var stylus = require('gulp-stylus');
 var nib = require('nib');
+var jeet = require('jeet');
 var plumber = require('gulp-plumber');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
@@ -36,6 +37,7 @@ htmlFilesToConcat.push(path.join(sourcePath, 'bottom.html'));
 var fallbackPath = path.join(sourcePath, 'bower_components/fallback/fallback.min.js');
 
 var javascriptVendors = [];
+javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/modernizr.min.js'));
 javascriptVendors.push(path.join(sourcePath, 'bower_components/jquery/dist/jquery.min.js'));
 
 var javascriptsFilesToConcat = [];
@@ -75,7 +77,7 @@ gulp.task('stylesheets', function () {
 		.pipe(plumber())
 		.pipe(sourcemaps.init())
 		.pipe(stylus({
-			use: nib(),
+			use: [nib(), jeet()],
 			compress: true
 		}))
 		.pipe(sourcemaps.write('.'))

@@ -26,6 +26,7 @@
     "gulp-stylus": "^2.0.3",
     "gulp-uglify": "^1.2.0",
     "gulp-watch": "^4.2.4",
+    "jeet": "^6.1.2",
     "nib": "^1.1.0",
     "open": "0.0.5",
     "string-color": "^0.8.0"

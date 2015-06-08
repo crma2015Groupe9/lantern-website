@@ -1,0 +1,46 @@
+header
+	width 100%
+	height : size_height.mainMenu
+	fixed top 0 left 0
+	z-index 200
+
+.main-menu
+	width 100%
+	height : size_height.mainMenu
+	overflow hidden
+	position: relative
+
+.main-menu-element
+	span(ratios = 1/6)
+	height : size_height.mainMenu
+	position: relative
+	z-index 5
+
+	&.main-element
+		background-color : color.mainMenu
+		z-index: 10
+	
+	&:hover, &:focus
+		cursor : pointer
+
+.main-menu-element-label
+	line-height : size_height.mainMenu
+	text-align : center
+	font_menu_element(18)
+	letter-spacing : (40/100) px
+	
+	a{
+		color : color.mainMenuElementLabel
+		text-decoration : none
+	}
+	
+.main-menu-element-underline
+	width 148px
+	height 4px
+	background-color : color.mainMenuElementUnderline
+	absolute bottom 0 left 0
+	z-index 8
+
+.csstransitions
+	.main-menu-element-underline
+		transition left 0.3s ease-out
