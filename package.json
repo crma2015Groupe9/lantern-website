@@ -1,0 +1,33 @@
+{
+  "name": "lantern-website",
+  "version": "1.0.0",
+  "description": "Le site web du projet Lantern",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crma2015Groupe9/lantern-website.git"
+  },
+  "author": "Alexis Tessier/Katia Moreira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crma2015Groupe9/lantern-website/issues"
+  },
+  "homepage": "https://github.com/crma2015Groupe9/lantern-website",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-batch": "^1.0.5",
+    "gulp-concat": "^2.5.2",
+    "gulp-connect": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-stylus": "^2.0.3",
+    "gulp-uglify": "^1.2.0",
+    "gulp-watch": "^4.2.4",
+    "nib": "^1.1.0",
+    "open": "0.0.5",
+    "string-color": "^0.8.0"
+  }
+}
