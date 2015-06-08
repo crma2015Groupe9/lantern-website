@@ -30,7 +30,7 @@ stylesheetsPathToWatch.push(path.join(sourcePath, 'stylesheets/components/*.styl
 
 var htmlFilesToConcat = [];
 htmlFilesToConcat.push(path.join(sourcePath, 'top.html'));
-htmlFilesToConcat.push(path.join(sourcePath, 'body.html'));
+htmlFilesToConcat.push(path.join(sourcePath, 'content/*.html'));
 htmlFilesToConcat.push(path.join(sourcePath, 'bottom.html'));
 
 var fallbackPath = path.join(sourcePath, 'bower_components/fallback/fallback.min.js');
