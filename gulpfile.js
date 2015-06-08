@@ -35,8 +35,8 @@ htmlFilesToConcat.push(path.join(sourcePath, 'bottom.html'));
 
 var fallbackPath = path.join(sourcePath, 'bower_components/fallback/fallback.min.js');
 
-var bowerComponentsFilesToConcat = [];
-bowerComponentsFilesToConcat.push(path.join(sourcePath, 'bower_components/jquery/dist/jquery.min.js'));
+var javascriptVendors = [];
+javascriptVendors.push(path.join(sourcePath, 'bower_components/jquery/dist/jquery.min.js'));
 
 var javascriptsFilesToConcat = [];
 javascriptsFilesToConcat.push(path.join(sourcePath, 'javascript/classes/*.js'));
@@ -87,7 +87,7 @@ gulp.task('javascript-vendor', function () {
 		.pipe(plumber())
 		.pipe(gulp.dest(buildPath));
 
-	gulp.src(bowerComponentsFilesToConcat)
+	gulp.src(javascriptVendors)
 		.pipe(plumber())
 		.pipe(concat('javascript-vendor.js'))
 		.pipe(gulp.dest(buildPath));
