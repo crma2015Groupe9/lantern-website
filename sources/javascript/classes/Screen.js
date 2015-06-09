@@ -44,9 +44,10 @@ var Screen = (function() {
 	};
 
 	Screen.prototype.changeHeight = function (newHeight) {
-		for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
-			this.backgrounds[i].height(newHeight);
-		}
+		this.$.height(newHeight);
+		// for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
+		// 	this.backgrounds[i].height(newHeight);
+		// }
 	}
 
 	return Screen;
