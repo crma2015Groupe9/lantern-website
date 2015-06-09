@@ -1,9 +1,12 @@
 @import 'nib'
 @import 'jeet'
 
+global-reset()
+
 @import "./functions.styl"
 @import "./mixins.styl"
 
+@import "./fontsImports.styl"
 @import "./fonts.styl"
 @import "./variables.styl"
 
@@ -16,3 +19,10 @@
 body
 	background-color: white
 	font-size 16
+
+a.important-link
+	color : color.brandBaseline
+	
+h2.catch-phrase
+	color : color.brandBaseline
+	

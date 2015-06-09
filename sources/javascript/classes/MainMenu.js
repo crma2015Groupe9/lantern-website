@@ -7,10 +7,11 @@ var MainMenu = (function() {
 			return new MainMenu(jqueryNode);
 		}
 		
-		this.node = jqueryNode;
+		this.$ = jqueryNode;
 		this.slideGroupTargetID = null;
 		this.menuElements = [];
 		this.underline = null;
+		this.currentMenuElementIndex = 0;
 
 		this.init();
 	}
@@ -18,12 +19,13 @@ var MainMenu = (function() {
 	MainMenu.prototype.init = function() {
 		var self = this;
 
-		this.slideGroupTargetID = this.node.data('screen-group-target');
-		this.underline = this.node.find('.main-menu-element-underline').first();
+		this.slideGroupTargetID = this.$.data('screen-group-target');
+		this.underline = this.$.find('.main-menu-element-underline').first();
 
-		this.node.find('.main-menu-element').each(function (i,e) {
+		this.$.find('.main-menu-element').each(function (i,e) {
 			var menuElement = new MainMenuElement($(e));
-			menuElement.setParentMenu(self);
+			menuElement.parentMenu = self;
+			menuElement.index = i;
 			self.menuElements.push(menuElement);
 		});
 	};
@@ -38,6 +40,10 @@ var MainMenu = (function() {
 
 	MainMenu.prototype.setUnderlineOffset = function (offset) {
 		this.underline.css('left', offset+'px');
+	};
+
+	MainMenu.prototype.select = function (elementIndex) {
+		this.menuElement[elementIndex].select();	
 	};
 
 	return MainMenu;

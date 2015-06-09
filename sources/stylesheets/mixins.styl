@@ -5,11 +5,12 @@ font-size(sizeValue = 16)
 	font-size : (sizeValue/mainFontSize)rem
 
 font_base(fontName, size = 16)
-	font-family fontName, sans-serif
+	font-family fontName
 	font-size size
 
 picto(imageName, width = 0, height = width)
-	block width height
+	width : width
+	height : height
 	background no-repeat imageNamed(imageName)
 	
 cssShape_circle(size, color = #000)

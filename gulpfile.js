@@ -14,6 +14,9 @@ var concat = require('gulp-concat');
 var watch = require('gulp-watch');
 var batch = require('gulp-batch');
 
+var imagemin = require('gulp-imagemin');
+var pngquant = require('imagemin-pngquant');
+
 var open = require('open');
 var connect = require('gulp-connect');
 
@@ -43,6 +46,16 @@ javascriptVendors.push(path.join(sourcePath, 'bower_components/jquery/dist/jquer
 var javascriptsFilesToConcat = [];
 javascriptsFilesToConcat.push(path.join(sourcePath, 'javascript/classes/*.js'));
 javascriptsFilesToConcat.push(path.join(sourcePath, 'javascript/main.js'));
+
+var fontsToWatch = [];
+fontsToWatch.push(path.join(sourcePath, 'fonts/*.eot'));
+fontsToWatch.push(path.join(sourcePath, 'fonts/*.svg'));
+fontsToWatch.push(path.join(sourcePath, 'fonts/*.ttf'));
+fontsToWatch.push(path.join(sourcePath, 'fonts/*.woff'));
+fontsToWatch.push(path.join(sourcePath, 'fonts/*.woff2'));
+
+var imagesToWatch = [];
+imagesToWatch.push(path.join(sourcePath, ('images/**')));
 
 /*----------------------------------*/
 /*----------------------------------*/
@@ -116,7 +129,7 @@ gulp.task('html', function () {
 		.pipe(gulp.dest(buildPath));
 });
 
-gulp.task('build', ['stylesheets', 'javascript-vendor', 'javascript', 'html']);
+gulp.task('build', ['images', 'stylesheets', 'javascript-vendor', 'javascript', 'html', 'fonts']);
 
 gulp.task('watch', function () {
 	watch(htmlFilesToConcat, batch(function (events, done) {
@@ -130,7 +143,31 @@ gulp.task('watch', function () {
 	watch(javascriptsFilesToConcat, batch(function (events, done) {
 		gulp.start('javascript', done);
 	}));
+
+	watch(fontsToWatch, batch(function (events, done) {
+		gulp.start('fonts', done);
+	}));
+
+	watch(imagesToWatch, batch(function (events, done) {
+		gulp.start('images', done);
+	}));
 });
+
+gulp.task('fonts', function () {
+	gulp.src(fontsToWatch)
+		.pipe(plumber())
+		.pipe(gulp.dest(path.join(buildPath, 'fonts')));
+});
+
+gulp.task('images', function () {
+	gulp.src(imagesToWatch)
+		.pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()]
+        }))
+        .pipe(gulp.dest(path.join(buildPath, 'images')));
+})
 
 gulp.task('server', ['build', 'watch', 'connect'], function () {
 	watch([buildPath+'/**'], batch(function (events, done) {

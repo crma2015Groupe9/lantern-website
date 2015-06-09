@@ -1,0 +1,22 @@
+.logo
+	&.lantern
+		picto('logo.png', size_height.logo)
+
+.brand-inline-block
+	margin auto
+	width 140px
+	padding-top 14px
+	
+	.logo
+		float left
+		margin-right 20px
+	
+	.brand-name
+		font_brand_name(18px)
+		text-transform lowercase
+		line-height : size_height.logo
+		letter-spacing 1px
+		a{
+			color : color.mainMenuElementBrandName
+			text-decoration : none
+		}

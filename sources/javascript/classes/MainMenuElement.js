@@ -7,22 +7,23 @@ var MainMenuElement = (function() {
 			return new MainMenuElement(jsqueryNode);
 		}
 		
-		this.node = jqueryNode;
+		this.$ = jqueryNode;
 
 		this.screenTargetID = null;
 		this.screenTarget = null;
 		this.parentMenu = null;
 		this.label = null;
+		this.index = 0;
 
 		this.init();
 		this.bindEvents();
 	}
 
 	MainMenuElement.prototype.init = function() {
-		this.screenTargetID = this.node.data('screen-target');
+		this.screenTargetID = this.$.data('screen-target');
 		this.screenTarget = $('#'+this.screenTargetID);
 
-		this.label = this.node.find('.main-menu-element-label').first();
+		this.label = this.$.find('.main-menu-element-label').first();
 		if (!this.label.size()) {
 			this.label = null;
 		}
@@ -30,30 +31,27 @@ var MainMenuElement = (function() {
 
 	MainMenuElement.prototype.bindEvents = function () {
 		var self = this;
-		this.node.click(function (event) {
+		this.$.click(function (event) {
 			self.select();
 		});
-	}
-
-	MainMenuElement.prototype.setParentMenu = function (parentMenu) {
-		this.parentMenu = parentMenu;
-	}
+	};
 
 	MainMenuElement.prototype.getOffset = function () {
-		return parseInt(this.node.offset().left, 10);
-	}
+		return parseInt(this.$.offset().left, 10);
+	};
 
 	MainMenuElement.prototype.getWidth = function () {
-		return this.node.width();
-	}
+		return this.$.width();
+	};
 
 	MainMenuElement.prototype.getCenterOffset = function () {
 		return this.getOffset() + this.getWidth()/2;
-	}
+	};
 
 	MainMenuElement.prototype.select = function () {
+		this.parentMenu.currentMenuElementIndex = 0;
 		this.parentMenu.setUnderlineCenterOffset(this.getCenterOffset());
-	}
+	};
 
 	return MainMenuElement;
 }());
