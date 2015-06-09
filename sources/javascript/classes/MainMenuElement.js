@@ -27,12 +27,16 @@ var MainMenuElement = (function() {
 		if (!this.label.size()) {
 			this.label = null;
 		}
+
+		this.$.find('a').click(function (event) {
+			event.preventDefault();
+		});
 	};
 
 	MainMenuElement.prototype.bindEvents = function () {
 		var self = this;
 		this.$.click(function (event) {
-			self.select();
+			self.click();
 		});
 	};
 
@@ -48,9 +52,12 @@ var MainMenuElement = (function() {
 		return this.getOffset() + this.getWidth()/2;
 	};
 
+	MainMenuElement.prototype.click = function () {
+		this.select();
+	}
+
 	MainMenuElement.prototype.select = function () {
-		this.parentMenu.currentMenuElementIndex = 0;
-		this.parentMenu.setUnderlineCenterOffset(this.getCenterOffset());
+		this.parentMenu.select(this.index);
 	};
 
 	return MainMenuElement;

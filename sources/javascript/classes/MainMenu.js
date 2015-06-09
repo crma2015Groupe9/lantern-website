@@ -8,10 +8,10 @@ var MainMenu = (function() {
 		}
 		
 		this.$ = jqueryNode;
-		this.slideGroupTargetID = null;
 		this.menuElements = [];
 		this.underline = null;
 		this.currentMenuElementIndex = 0;
+		this.screenGroupTarget = null;
 
 		this.init();
 	}
@@ -19,7 +19,6 @@ var MainMenu = (function() {
 	MainMenu.prototype.init = function() {
 		var self = this;
 
-		this.slideGroupTargetID = this.$.data('screen-group-target');
 		this.underline = this.$.find('.main-menu-element-underline').first();
 
 		this.$.find('.main-menu-element').each(function (i,e) {
@@ -43,7 +42,32 @@ var MainMenu = (function() {
 	};
 
 	MainMenu.prototype.select = function (elementIndex) {
-		this.menuElement[elementIndex].select();	
+		this.currentMenuElementIndex = elementIndex;
+		this.setUnderlineCenterOffset(this.menuElements[elementIndex].getCenterOffset());
+		this.selectScreen(elementIndex);
+	};
+
+	MainMenu.prototype.selectScreen = function (screenIndex) {
+		var documentBody = document.body || document.documentElement;
+		$(documentBody).animate({scrollTop: this.screenGroupTarget.screens[screenIndex].$.offset().top}, 250);
+	};
+
+	MainMenu.prototype.underlineElementMenuWithTargetID = function (targetID) {
+		var elementNotFound = true;
+		for (var i = 0, imax = this.menuElements.length;(i<imax && elementNotFound);i++){
+			var element  = this.menuElements[i];
+			if (element.screenTargetID == targetID) {
+				this.currentMenuElementIndex = element.index;
+				this.setUnderlineCenterOffset(element.getCenterOffset());
+				elementNotFound = false;
+			}
+		}
+	};
+
+	MainMenu.prototype.onScroll = function (scroll) {
+		if (scroll.change) {
+			this.underlineElementMenuWithTargetID(this.screenGroupTarget.getScreenIdentifierForScrollPosition(scroll.position));
+		}
 	};
 
 	return MainMenu;

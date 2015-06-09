@@ -28,10 +28,43 @@
 /*-------------------*/
 /*-------------------*/
 
+var preloadImages = function preloadImages() {
+	var loader = new PxLoader();
+	var screenBackgrounds = ScreenBackground.list();
+
+	var backgroundImgList = [];
+
+	$(screenBackgrounds).each(function (i,e) {
+		var bg = e.$;
+		var imageLinkToLoad = bg.data('image-url');
+		if (typeof imageLinkToLoad === "string") {
+			if (imageLinkToLoad.length > 0) {
+				backgroundImgList.push({
+					bg : e,
+					image :	loader.addImage(imageLinkToLoad)
+				});
+			}
+		}
+	});
+
+	loader.addCompletionListener(function() { 
+		for(var i=0, imax = backgroundImgList.length;i<imax;i++){
+			var background = backgroundImgList[i];
+			background.bg.$.append(background.image);
+			background.bg.screenResize($(window).width(), $(window).height());
+		}
+	});
+
+	loader.start();
+};
+
+
 var onDocumentReady = function onDocumentReady(){
 	var $window = $(window);
+	var $document = $(document);
 	var mainMenu = new MainMenu($('.main-menu').first());
 	var screenGroup = new ScreenGroup($('#main-screen-group'));
+	mainMenu.screenGroupTarget = screenGroup;
 
 	var time = {};
 	time.start = Date.now();
@@ -66,13 +99,32 @@ var onDocumentReady = function onDocumentReady(){
 
 		resize.size.width = newWidth;
 		resize.size.height = newHeight;
-	}
+	};
+
+	var scroll = {
+		change : false,
+		toUp : false,
+		toDown : false,
+		position : 0
+	};
+
+	var updateScroll = function updateScroll() {
+		var newScrollPosition = $document.scrollTop();
+		scroll.toDown = newScrollPosition > scroll.position;
+		scroll.toUp = newScrollPosition < scroll.position;
+		scroll.change = (scroll.toUp || scroll.toDown);
+		scroll.position = newScrollPosition;
+	};
 
 	requestAnimationFrame(function requestAnimationFrameEvent() {
 		updateTime();
 		updateResize();
+		updateScroll();
+
+		mainMenu.onScroll(scroll);
 
 		screenGroup.onResize(resize);
+		screenGroup.onScroll(scroll);
 
 		requestAnimationFrame(requestAnimationFrameEvent);
 	});
@@ -83,5 +135,7 @@ var main = function main() {
 
 	$(document).ready(function () {
 		onDocumentReady();
+
+		preloadImages();
 	});
 };

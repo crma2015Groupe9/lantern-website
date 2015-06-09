@@ -1,15 +1,30 @@
-.concept-step
-	max-width: 100%;
-	align(direction = both)
-	span(ratio = 6/12)
-
 .concept-step-picto
 	&.moon
 		picto("animated/Pictos_Nuit_/Pictos_Nuit_00000.png", 277px/2, 279px/2)
 		background-size cover
 		margin auto
+		
+.concept-step
+	max-width: 100%;
+	align(direction = both)
+	span(ratio = 6/12)
+	
+	.concept-step-title
+		margin-bottom 25px
+		
+	.concept-step-picto
+		margin-bottom 30px
 
 .concept-step-title
 	display block
-	
 	font_concept_title(36)
+	color : color.conceptText
+	letter-spacing : 0.4px
+	text-align center
+
+.concept-step-text
+	font_concept_text(20)
+	color : color.conceptText
+	letter-spacing : 0.4px
+	text-align center
+	line-height 28px

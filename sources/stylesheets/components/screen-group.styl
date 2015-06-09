@@ -6,6 +6,12 @@
 	width 100%
 	position: relative
 	//background-color: green
+		
+	&.active
+		.screen-background.blur-when-active > *{
+			filter: blur(10px);
+			-webkit-filter: blur(10px);
+		}
 
 .screen-sub-part
 	width auto
@@ -17,6 +23,9 @@
 	left 0
 	background-repeat : no-repeat
 	width 100%
-	
-#screen-home-background-left
-	background-color blue
+	overflow hidden
+
+	img
+		position: absolute
+		top 0
+		left 0

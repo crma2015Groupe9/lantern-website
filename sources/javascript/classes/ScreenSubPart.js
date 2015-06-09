@@ -24,11 +24,11 @@ var ScreenSubPart = (function() {
 		if (resize.height) {
 			this.changeHeight(resize.size.height);
 		}
-	}
+	};
 
 	ScreenSubPart.prototype.changeHeight = function (newHeight) {
 		this.$.height(newHeight);
-	}
+	};
 
 	return ScreenSubPart;
 }());

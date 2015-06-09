@@ -28,7 +28,28 @@ var ScreenGroup = (function() {
 		for(var i = 0, imax = this.screens.length;i<imax;i++){
 			this.screens[i].onResize(resize);
 		}
-	}
+	};
+
+	ScreenGroup.prototype.onScroll = function (scroll) {
+		for(var i = 0, imax = this.screens.length;i<imax;i++){
+			this.screens[i].onScroll(scroll);
+		};
+	};
+
+	ScreenGroup.prototype.getScreenIdentifierForScrollPosition = function (scrollPosition) {
+
+		var identifier = this.screens[0].identifier;
+		for(var i=0,imax = this.screens.length;i<imax;i++){
+			var currentScreen = this.screens[i];
+			var screenPosition = currentScreen.getRelativeScrollPosition(scrollPosition);
+
+			if (screenPosition>-25) {
+				identifier = currentScreen.identifier;
+			}
+		}
+
+		return identifier;
+	};
 
 	return ScreenGroup;
 }());
