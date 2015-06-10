@@ -32,6 +32,9 @@ var stylesheetsPathToWatch = [];
 stylesheetsPathToWatch.push(path.join(sourcePath, 'stylesheets/*.styl'));
 stylesheetsPathToWatch.push(path.join(sourcePath, 'stylesheets/components/*.styl'));
 
+var stylesheetsVendors = [];
+stylesheetsVendors.push(path.join(sourcePath, 'stylesheets/vendors/owl.carousel.css'));
+
 var htmlFilesToConcat = [];
 htmlFilesToConcat.push(path.join(sourcePath, 'top.html'));
 htmlFilesToConcat.push(path.join(sourcePath, 'content/*.html'));
@@ -40,8 +43,9 @@ htmlFilesToConcat.push(path.join(sourcePath, 'bottom.html'));
 var fallbackPath = path.join(sourcePath, 'bower_components/fallback/fallback.min.js');
 
 var javascriptVendors = [];
-javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/modernizr.min.js'));
 javascriptVendors.push(path.join(sourcePath, 'bower_components/jquery/dist/jquery.min.js'));
+javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/modernizr.min.js'));
+javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/owl.carousel.min.js'));
 
 var javascriptsFilesToConcat = [];
 javascriptsFilesToConcat.push(path.join(sourcePath, 'javascript/classes/*.js'));
@@ -84,6 +88,17 @@ gulp.task('livereload', function() {
 /*----------------------------------*/
 /*----------------------------------*/
 /*----------------------------------*/
+
+gulp.task('stylesheets-vendor', function () {
+	gulp.src(fallbackPath)
+		.pipe(plumber())
+		.pipe(gulp.dest(buildPath));
+
+	gulp.src(stylesheetsVendors)
+		.pipe(plumber())
+		.pipe(concat('stylesheets-vendor.css'))
+		.pipe(gulp.dest(buildPath));
+});
 
 gulp.task('stylesheets', function () {
 	gulp.src(stylusMainFile)
@@ -129,7 +144,7 @@ gulp.task('html', function () {
 		.pipe(gulp.dest(buildPath));
 });
 
-gulp.task('build', ['images', 'stylesheets', 'javascript-vendor', 'javascript', 'html', 'fonts']);
+gulp.task('build', ['images', 'stylesheets-vendor', 'stylesheets', 'javascript-vendor', 'javascript', 'html', 'fonts']);
 
 gulp.task('watch', function () {
 	watch(htmlFilesToConcat, batch(function (events, done) {

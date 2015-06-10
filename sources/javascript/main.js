@@ -32,6 +32,7 @@ var onDocumentReady = function onDocumentReady(){
 	var $window = $(window);
 	var mainMenu = new MainMenu($('.main-menu').first());
 	var screenGroup = new ScreenGroup($('#main-screen-group'));
+    var slider = new Slider($('.slider'));
 
 	var time = {};
 	time.start = Date.now();
