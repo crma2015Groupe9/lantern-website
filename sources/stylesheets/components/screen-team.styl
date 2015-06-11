@@ -1,9 +1,40 @@
 #screen-team
 	color: color.customBlue
 
+	.section-title
+		margin-bottom 90px
+
 #screen-team .teammate
 	column(1/4)
-	
-#screen-team .teammate p
-	font_base(wigrumWebRegular, 20)
 	text-align center
+
+	p
+		margin-top 20px
+		font_base(wigrumRegular, 20)
+		text-align center
+		line-height 28px
+
+#screen-team hr
+	width 67px
+	height 4px
+	margin 28px auto 20px auto
+	border none
+	background-color: color.customBlue
+
+#screen-team .icons
+	margin-top 25px
+	font-size 0
+
+#screen-team a.social
+	display inline-block
+	width: 45px
+	height: 45px
+	margin 0 11px
+	background: imageNamed('social-icons.png')
+
+	&.github
+		background-position 0 -45px
+	&.link
+		background-position 0 -90px
+	&:hover
+		background-position-x -45px

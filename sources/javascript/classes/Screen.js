@@ -66,6 +66,9 @@ var Screen = (function() {
 	Screen.prototype.changeHeight = function (newHeight) {
 		this.$.height(newHeight);
 		
+			// for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
+			// 	this.backgrounds[i].height(newHeight);
+			// }
 	};
 
 	Screen.prototype.onScroll = function (scroll) {
