@@ -6,7 +6,7 @@ var ScreenGroup = (function() {
 		if (!(this instanceof ScreenGroup)) {
 			return new ScreenGroup(jqueryNode);
 		}
-		
+
 		this.$ = jqueryNode;
 		this.screens = [];
 

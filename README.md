@@ -3,7 +3,7 @@ Lantern Website Doc
 
 ##Workflow gulp
 
-Il faut installer les dépendences via npm install -dev, puis faire un gulp watch ou gulp server pour avoir du livereload.
+Il faut installer les dépendences via npm install, puis faire un gulp watch ou gulp server pour avoir du livereload.
 
 ##Javascript
 Un dossier "classes" pour placer les prototypes et un fichier main.js (la fonction main est appelée une fois que tous les scripts et css sont chargés en asynchrones)
