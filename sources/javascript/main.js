@@ -2,26 +2,26 @@
 
 /*RequestAnimationFrame Polyfill*/
 (function() {
-    var lastTime = 0;
-    var vendors = ['ms', 'moz', 'webkit', 'o'];
-    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-        window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] 
-                                   || window[vendors[x]+'CancelRequestAnimationFrame'];
-    }
-    if (!window.requestAnimationFrame)
-        window.requestAnimationFrame = function(callback, element) {
-            var currTime = new Date().getTime();
-            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-            var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
-              timeToCall);
-            lastTime = currTime + timeToCall;
-            return id;
-        };
-    if (!window.cancelAnimationFrame)
-        window.cancelAnimationFrame = function(id) {
-            clearTimeout(id);
-        };
+	var lastTime = 0;
+	var vendors = ['ms', 'moz', 'webkit', 'o'];
+	for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+		window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+		window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame']
+								   || window[vendors[x]+'CancelRequestAnimationFrame'];
+	}
+	if (!window.requestAnimationFrame)
+		window.requestAnimationFrame = function(callback, element) {
+			var currTime = new Date().getTime();
+			var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+			var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+			  timeToCall);
+			lastTime = currTime + timeToCall;
+			return id;
+		};
+	if (!window.cancelAnimationFrame)
+		window.cancelAnimationFrame = function(id) {
+			clearTimeout(id);
+		};
 }());
 
 /*-------------------*/
@@ -47,7 +47,7 @@ var preloadImages = function preloadImages() {
 		}
 	});
 
-	loader.addCompletionListener(function() { 
+	loader.addCompletionListener(function() {
 		for(var i=0, imax = backgroundImgList.length;i<imax;i++){
 			var background = backgroundImgList[i];
 			background.bg.$.append(background.image);
@@ -67,7 +67,7 @@ var onDocumentReady = function onDocumentReady(){
 
 	mainMenu.screenGroupTarget = screenGroup;
 
-    var slider = new Slider($('.slider'));
+	var slider = new Slider($('.slider'));
 
 	var time = {};
 	time.start = Date.now();
@@ -87,7 +87,7 @@ var onDocumentReady = function onDocumentReady(){
 		every : false,
 		size : {
 			width : $window.width(),
-		 	height : $window.height()
+			height : $window.height()
 		}
 	};
 
