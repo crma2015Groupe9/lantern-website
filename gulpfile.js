@@ -33,7 +33,7 @@ stylesheetsPathToWatch.push(path.join(sourcePath, 'stylesheets/*.styl'));
 stylesheetsPathToWatch.push(path.join(sourcePath, 'stylesheets/components/*.styl'));
 
 var stylesheetsVendors = [];
-stylesheetsVendors.push(path.join(sourcePath, 'stylesheets/vendors/owl.carousel.css'));
+stylesheetsVendors.push(path.join(sourcePath, 'stylesheets/vendors/slick.css'));
 
 var htmlFilesToConcat = [];
 htmlFilesToConcat.push(path.join(sourcePath, 'top.html'));
@@ -46,7 +46,8 @@ var javascriptVendors = [];
 javascriptVendors.push(path.join(sourcePath, 'bower_components/jquery/dist/jquery.min.js'));
 javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/pxloader-all.min.js'));
 javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/modernizr.min.js'));
-javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/owl.carousel.min.js'));
+javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/jquery.color.js'));
+javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/slick.min.js'));
 
 var javascriptsFilesToConcat = [];
 javascriptsFilesToConcat.push(path.join(sourcePath, 'javascript/classes/*.js'));
