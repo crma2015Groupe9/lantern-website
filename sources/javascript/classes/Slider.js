@@ -16,28 +16,31 @@ var Slider = (function() {
 		var self = this;
 
 		this.$.slick({
-			infinite: false,
+			infinite: true,
 			slidesToShow: 3,
 			slidesToScroll: 1,
 			centerMode: true,
 			autoplay: false,
 			autoplaySpeed: 5000,
-			speed: 600,
+			speed: 750,
 			pauseOnHover: false
 		});
 
 		this.$.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
-			var nextColor = $('.slider [data-slick-index='+nextSlide+']').attr('data-color');
+			var $nextSlide = $('.slider [data-slick-index='+nextSlide+']');
+
+			var nextColor = $nextSlide.attr('data-color');
 			$('#screen-animals').animate({
 				backgroundColor: nextColor
 			});
+
+			var name = $nextSlide.attr('data-name');
+			var $animalName = $('p.animal-name');
+			$animalName.fadeOut(400, function() {
+				$animalName.text(name);
+				$animalName.fadeIn(400);
+			});
 		});
-
-		// var owl = $('.owl-carousel').data('owlCarousel');
-
-		// $('.owl-item').click(function() {
-		// 	var index = $(this).index();
-		// });
 	};
 
 	return Slider;

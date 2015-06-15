@@ -1,27 +1,42 @@
 #screen-animals
-    background-color: color.animalsBackground
+	background-color: color.animalsBackground
 
-    .animals-container
-        padding-top 5%
+	.animals-container
+		padding-top 5%
 
-    h2
-        color #FFF
+	h2
+		color #FFF
 
 #screen-animals .slider
-    margin-top 8%
+	margin-top 8%
 
-    li
-        display inline-block
+	li
+		display inline-block
 
-    .slick-list
-        padding: 0 !important
+	.slick-list
+		padding: 0 !important
 
-    .slick-slide
-        height: 532px
-        position: relative
+	.slick-slide
+		height: 532px
+		position: relative
 
-        img
-            position: absolute
-            top: 50%
-            left: 50%
-            transform: translate(-50%, -50%)
+		img
+			position: absolute
+			top: 50%
+			left: 50%
+			transform: translate(-50%, -50%)
+			
+#screen-animals p.animal-name
+	color #e9efff
+	font_base(wigrumRegular, 21)
+	text-align center
+	
+#screen-animals .pagination
+	font-size 0
+	
+	button
+		width 54px
+		height 4px
+		border none
+		border-radius(0)
+		background-color #FFF
