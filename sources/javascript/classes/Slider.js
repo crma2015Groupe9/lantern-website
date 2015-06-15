@@ -17,13 +17,23 @@ var Slider = (function() {
 
 		this.$.slick({
 			infinite: true,
+			arrows: false,
 			slidesToShow: 3,
 			slidesToScroll: 1,
 			centerMode: true,
+			centerPadding: '300px',
 			autoplay: false,
 			autoplaySpeed: 5000,
 			speed: 750,
 			pauseOnHover: false
+			// responsive: [
+			// 	{
+			// 		breakpoint: 1280,
+			// 		settings: {
+			// 			centerPadding: '50%'
+			// 		}
+			// 	}
+			// ]
 		});
 
 		this.$.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
@@ -40,6 +50,12 @@ var Slider = (function() {
 				$animalName.text(name);
 				$animalName.fadeIn(400);
 			});
+		});
+
+		$('.pagination button').on('click', function() {
+			var index = $(this).index();
+
+			self.$.slick('slickGoTo', index - 1);
 		});
 	};
 

@@ -13,9 +13,6 @@
 	li
 		display inline-block
 
-	.slick-list
-		padding: 0 !important
-
 	.slick-slide
 		height: 532px
 		position: relative
@@ -25,18 +22,28 @@
 			top: 50%
 			left: 50%
 			transform: translate(-50%, -50%)
-			
-#screen-animals p.animal-name
-	color #e9efff
-	font_base(wigrumRegular, 21)
-	text-align center
-	
+
+#screen-animals
+
 #screen-animals .pagination
+	margin-top -85px
 	font-size 0
-	
+	text-align center
+	position relative
+	z-index 200
+
+	p.animal-name
+		margin-bottom 20px
+		color #e9efff
+		font_base(wigrumRegular, 21)
+
 	button
 		width 54px
 		height 4px
 		border none
 		border-radius(0)
 		background-color #FFF
+		cursor pointer
+
+		&.active
+			background-color: color.customBlue
