@@ -64,7 +64,8 @@ var Screen = (function() {
 	};
 
 	Screen.prototype.changeHeight = function (newHeight) {
-		this.$.height(newHeight);
+		var subpartCount = this.subParts.length;
+		this.$.height(newHeight*(subpartCount === 0 ? 1 : subpartCount));
 		
 			// for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
 			// 	this.backgrounds[i].height(newHeight);

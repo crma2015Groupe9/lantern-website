@@ -91,10 +91,6 @@ gulp.task('livereload', function() {
 /*----------------------------------*/
 
 gulp.task('stylesheets-vendor', function () {
-	gulp.src(fallbackPath)
-		.pipe(plumber())
-		.pipe(gulp.dest(buildPath));
-
 	gulp.src(stylesheetsVendors)
 		.pipe(plumber())
 		.pipe(concat('stylesheets-vendor.css'))
