@@ -30,15 +30,31 @@ var ScreenBackground = (function() {
 
 		ScreenBackgroundList.push(this);
 		this.resizeType = null;
+		this.blurView = null;
 
 		this.originalBackgroundImageSize = null;
 
-		this.init()
+		this.init();
 	}
 
 	ScreenBackground.prototype.init = function() {
 		this.resizeType = this.$.data('resize-type');
 	};
+
+	ScreenBackground.prototype.mustBlurWhenActive = function () {
+		return this.$.hasClass('must-blur-when-active');	
+	};
+
+	ScreenBackground.prototype.setBackgroundImage = function (image) {
+		this.$.append(image);
+		this.$.find('img').last().addClass('simple-view');
+
+		if (this.mustBlurWhenActive()) {
+			this.$.append($(image).clone());
+			this.blurView = this.$.find('img').last();
+			this.blurView.addClass('blur-view');
+		}
+	}
 
 	ScreenBackground.prototype.screenResize = function (width, height) {
 		var imageFullScreen = this.$.find('img').first();
@@ -68,6 +84,11 @@ var ScreenBackground = (function() {
 					imageFullScreen.css('left', (width-imageFullScreen.width())/2+'px');
 				}
 			}
+		}
+
+		if (this.mustBlurWhenActive() && this.blurView) {
+			this.blurView.width(imageFullScreen.width());
+			this.blurView.height(imageFullScreen.height());
 		}
 	}
 

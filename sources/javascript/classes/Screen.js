@@ -66,15 +66,15 @@ var Screen = (function() {
 	Screen.prototype.changeHeight = function (newHeight) {
 		var subpartCount = this.subParts.length;
 		this.$.height(newHeight*(subpartCount === 0 ? 1 : subpartCount));
-		
-			// for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
-			// 	this.backgrounds[i].height(newHeight);
-			// }
 	};
 
 	Screen.prototype.onScroll = function (scroll) {
 		if (scroll.change) {
 			this.updateScrollPosition(this.getRelativeScrollPosition(scroll.position));
+
+			for(var i=0,imax = this.subParts.length;i<imax;i++){
+				this.subParts[i].onScroll(scroll);
+			}
 		}
 	};
 
@@ -84,12 +84,19 @@ var Screen = (function() {
 	};
 
 	Screen.prototype.updateScrollPosition = function (scrollPosition) {
-		if (scrollPosition > 12) {
-			this.$.addClass('active');
-		};
+		scrollPosition > -50 ? this.active() : this.unactive();
+
 		for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
 			this.backgrounds[i].$.css('top', (scrollPosition > 0 ? scrollPosition : 0)+'px');
 		}
+	};
+
+	Screen.prototype.active = function (active) {
+		active === false ? this.$.removeClass('active') : this.$.addClass('active');
+	};
+
+	Screen.prototype.unactive = function () {
+		this.active(false);
 	};
 
 	return Screen;

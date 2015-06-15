@@ -5,10 +5,14 @@
 .screen
 	width 100%
 	position: relative
-	//background-color: green
-		
+	
+	.screen-background.must-blur-when-active > .blur-view{
+		transition filter 0.4s ease-out
+		transition -webkit-filter 0.4s ease-out
+	}
+
 	&.active
-		.screen-background.blur-when-active > *{
+		.screen-background.must-blur-when-active > .blur-view{
 			filter: blur(10px);
 			-webkit-filter: blur(10px);
 		}
@@ -16,6 +20,32 @@
 .screen-sub-part
 	width auto
 	position relative
+	top 0
+
+.screen-sub-part-inner-wrapper
+	position absolute
+	left 0
+	width 100%
+	top 0
+
+.screen-sub-part-outer-wrapper.movable
+	position absolute
+	left 0
+	width 100%
+	top 65%
+	
+.csstransitions
+	.screen-sub-part
+		.screen-sub-part-outer-wrapper.movable
+			transition top 0.6s ease-out
+		
+		&.hidden-on-top
+			.screen-sub-part-outer-wrapper.movable
+				top -65%
+		
+		&.showed
+			.screen-sub-part-outer-wrapper.movable
+				top 0
 
 .screen-background
 	position: absolute
@@ -32,7 +62,7 @@
 		left 0
 
 #screen-home-background-left
-	background-color blue
+	background-color : color.homeBackground
 
 .section-title
 	font_section_title(52)

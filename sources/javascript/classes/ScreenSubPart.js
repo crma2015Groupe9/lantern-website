@@ -11,13 +11,26 @@ var ScreenSubPart = (function() {
 
 		this.index = 0;
 		this.parentScreen = null;
+		this.movableOuterWrapper = null;
+		this.innerWrapper = null;
+
+		this.scrollLimitDisappear = 82;
+		this.scrollLimitAppear = -18;
 
 		this.init();
 	}
 
 	ScreenSubPart.prototype.init = function() {
-		// method body
+		var self = this;
 		this.changeHeight($(window).height());
+		this.movableOuterWrapper = this.$.find('.screen-sub-part-outer-wrapper.movable').first();
+		this.innerWrapper = this.movableOuterWrapper.find('.screen-sub-part-inner-wrapper').first();
+
+		this.scrollLimitAppear = this.$.data('scroll-limit-appear') || -18;
+		this.scrollLimitDisappear = this.$.data('scroll-limit-disappear') || 82;
+
+		this.scrollLimitAppear = parseInt(this.scrollLimitAppear, 10);
+		this.scrollLimitDisappear = parseInt(this.scrollLimitDisappear, 10);
 	};
 
 	ScreenSubPart.prototype.onResize = function (resize) {
@@ -26,9 +39,47 @@ var ScreenSubPart = (function() {
 		}
 	};
 
+	ScreenSubPart.prototype.getRelativeScrollPosition = function (scrollPosition) {
+		var currentPosition = this.$.offset().top;
+		return scrollPosition - currentPosition;
+	};
+
+	ScreenSubPart.prototype.onScroll = function (scroll) {
+		if (scroll.change) {
+			var scrollPosition = this.getRelativeScrollPosition(scroll.position);
+			var scrollPositionInPercentage = scrollPosition/this.$.height()*100;
+
+			if (scrollPositionInPercentage > this.scrollLimitDisappear) {
+				this.$.addClass('hidden-on-top');
+				this.$.removeClass('showed');
+			}
+			else if (scrollPositionInPercentage > this.scrollLimitAppear) {
+				this.$.removeClass('hidden-on-top');
+				this.$.addClass('showed');
+
+				this.innerWrapper.css('top', scrollPosition+'px');
+			}
+			else{
+				this.$.removeClass('hidden-on-top');
+				this.$.removeClass('showed');
+			}
+		}
+	};
+
 	ScreenSubPart.prototype.changeHeight = function (newHeight) {
 		this.$.height(newHeight);
+		if (this.movableOuterWrapper) {
+			this.movableOuterWrapper.height(newHeight);
+		};
+
+		if(this.innerWrapper){
+			this.innerWrapper.height(newHeight);
+		}
 	};
+
+	ScreenSubPart.prototype.getHeight = function () {
+		return this.$.height();
+	}
 
 	return ScreenSubPart;
 }());

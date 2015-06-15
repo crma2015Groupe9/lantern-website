@@ -50,7 +50,7 @@ var preloadImages = function preloadImages() {
 	loader.addCompletionListener(function() {
 		for(var i=0, imax = backgroundImgList.length;i<imax;i++){
 			var background = backgroundImgList[i];
-			background.bg.$.append(background.image);
+			background.bg.setBackgroundImage(background.image);
 			background.bg.screenResize($(window).width(), $(window).height());
 		}
 	});
