@@ -42,7 +42,7 @@ var ScreenBackground = (function() {
 	};
 
 	ScreenBackground.prototype.mustBlurWhenActive = function () {
-		return this.$.hasClass('must-blur-when-active');	
+		return ($('html').hasClass('cssfilters') && this.$.hasClass('must-blur-when-active'));
 	};
 
 	ScreenBackground.prototype.setBackgroundImage = function (image) {
@@ -89,6 +89,7 @@ var ScreenBackground = (function() {
 		if (this.mustBlurWhenActive() && this.blurView) {
 			this.blurView.width(imageFullScreen.width());
 			this.blurView.height(imageFullScreen.height());
+			this.blurView.css('left', (width-imageFullScreen.width())/2+'px');
 		}
 	}
 

@@ -5,17 +5,20 @@
 .screen
 	width 100%
 	position: relative
-	
-	.screen-background.must-blur-when-active > .blur-view{
-		transition filter 0.4s ease-out
-		transition -webkit-filter 0.4s ease-out
-	}
-
-	&.active
+		
+.cssfilters
+	.screen
 		.screen-background.must-blur-when-active > .blur-view{
-			filter: blur(10px);
-			-webkit-filter: blur(10px);
+			transition filter 0.4s ease-out
+			transition -webkit-filter 0.4s ease-out
 		}
+
+		&.active
+			.screen-background.must-blur-when-active > .blur-view{
+				filter: blur(10px);
+				-webkit-filter: blur(10px);
+			}
+	
 
 .screen-sub-part
 	width auto
@@ -61,7 +64,7 @@
 		top 0
 		left 0
 
-#screen-home-background-left
+.main-background
 	background-color : color.homeBackground
 
 .section-title
