@@ -8,6 +8,7 @@ var Slider = (function() {
 		}
 
 		this.$ = jqueryNode;
+		this.autoplaySpeed = 5000;
 
 		this.init();
 	}
@@ -21,19 +22,25 @@ var Slider = (function() {
 			slidesToShow: 3,
 			slidesToScroll: 1,
 			centerMode: true,
-			centerPadding: '300px',
-			autoplay: false,
-			autoplaySpeed: 5000,
+			autoplay: true,
+			autoplaySpeed: self.autoplaySpeed,
 			speed: 750,
-			pauseOnHover: false
-			// responsive: [
-			// 	{
-			// 		breakpoint: 1280,
-			// 		settings: {
-			// 			centerPadding: '50%'
-			// 		}
-			// 	}
-			// ]
+			pauseOnHover: false,
+			responsive: [
+				{
+					breakpoint: 1280,
+					settings: {
+						slidesToShow: 1,
+						centerPadding: '25%'
+					}
+				},
+				{
+					breakpoint: 720,
+					settings: {
+						slidesToShow: 1
+					}
+				}
+			]
 		});
 
 		this.$.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
@@ -50,6 +57,22 @@ var Slider = (function() {
 				$animalName.text(name);
 				$animalName.fadeIn(400);
 			});
+		});
+
+		this.$.on('afterChange', function(event, slick, currentSlide, nextSlide) {
+			var $loader = $('div.loading .loader');
+			TweenLite.to($loader, self.autoplaySpeed / 1000, {width: '100%', ease: Power1.easeInOut, onComplete: function() {
+				TweenLite.to($loader, 0.5, {left: '100%', ease: Power1.easeInOut, onComplete: function() {
+					$loader.css({left: 0, width: 0});
+				}});
+			}});
+			// $('div.loading .loader').animate({
+			// 	width: '100%'
+			// }, self.autoplaySpeed, function() {
+			// 	$('div.loading .loader').animate({
+			// 		width: 0
+			// 	}, 500);
+			// });
 		});
 
 		$('.pagination button').on('click', function() {
