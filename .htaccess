@@ -1,0 +1,4 @@
+AuthName "Coucou, c'est quoi le mot de passe ?"
+AuthType Basic
+AuthUserFile "/kunden/homepages/35/d580223824/htdocs/.htpasswd"
+Require valid-user
