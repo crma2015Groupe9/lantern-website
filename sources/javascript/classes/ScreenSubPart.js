@@ -17,6 +17,8 @@ var ScreenSubPart = (function() {
 		this.scrollLimitDisappear = 82;
 		this.scrollLimitAppear = -18;
 
+		this.animatedPicto = null;
+
 		this.init();
 	}
 
@@ -31,6 +33,17 @@ var ScreenSubPart = (function() {
 
 		this.scrollLimitAppear = parseInt(this.scrollLimitAppear, 10);
 		this.scrollLimitDisappear = parseInt(this.scrollLimitDisappear, 10);
+
+		var animatedPicto = this.$.find('.animated-picto').first();
+		if (animatedPicto.size()) {
+			this.animatedPicto = new AnimatedPicto(animatedPicto);
+		}
+	};
+
+	ScreenSubPart.prototype.update = function (time) {
+		if (this.animatedPicto) {
+			this.animatedPicto.update(time);
+		}
 	};
 
 	ScreenSubPart.prototype.onResize = function (resize) {
@@ -62,6 +75,12 @@ var ScreenSubPart = (function() {
 			else{
 				this.$.removeClass('hidden-on-top');
 				this.$.removeClass('showed');
+			}
+
+			if(scrollPositionInPercentage >= -5){
+				if(this.animatedPicto){
+					this.animatedPicto.play();
+				}
 			}
 		}
 	};

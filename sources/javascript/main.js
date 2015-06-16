@@ -69,6 +69,8 @@ var onDocumentReady = function onDocumentReady(){
 
 	var slider = new Slider($('.slider'));
 
+	/*-----------------------*/
+
 	var time = {};
 	time.start = Date.now();
 	time.previous = Date.now();
@@ -128,6 +130,8 @@ var onDocumentReady = function onDocumentReady(){
 
 		screenGroup.onResize(resize);
 		screenGroup.onScroll(scroll);
+
+		screenGroup.update(time);
 
 		requestAnimationFrame(requestAnimationFrameEvent);
 	});

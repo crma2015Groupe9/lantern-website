@@ -33,7 +33,13 @@ var ScreenGroup = (function() {
 	ScreenGroup.prototype.onScroll = function (scroll) {
 		for(var i = 0, imax = this.screens.length;i<imax;i++){
 			this.screens[i].onScroll(scroll);
-		};
+		}
+	};
+
+	ScreenGroup.prototype.update = function (time) {
+		for(var i = 0, imax = this.screens.length;i<imax;i++){
+			this.screens[i].update(time);
+		}
 	};
 
 	ScreenGroup.prototype.getScreenIdentifierForScrollPosition = function (scrollPosition) {

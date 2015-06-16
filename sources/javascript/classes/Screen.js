@@ -65,7 +65,7 @@ var Screen = (function() {
 
 	Screen.prototype.changeHeight = function (newHeight) {
 		var subpartCount = this.subParts.length;
-		this.$.height(newHeight*(subpartCount === 0 ? 1 : subpartCount+0.5));
+		this.$.height(newHeight*(subpartCount === 0 ? 1 : subpartCount+0.4));
 	};
 
 	Screen.prototype.onScroll = function (scroll) {
@@ -75,6 +75,12 @@ var Screen = (function() {
 			for(var i=0,imax = this.subParts.length;i<imax;i++){
 				this.subParts[i].onScroll(scroll);
 			}
+		}
+	};
+
+	Screen.prototype.update = function (time) {
+		for(var i=0,imax = this.subParts.length;i<imax;i++){
+			this.subParts[i].update(time);
 		}
 	};
 

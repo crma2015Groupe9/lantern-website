@@ -57,39 +57,50 @@ var ScreenBackground = (function() {
 	}
 
 	ScreenBackground.prototype.screenResize = function (width, height) {
-		var imageFullScreen = this.$.find('img').first();
+		var imageBase = this.$.find('img').first();
 		this.$.height(height);
 		this.$.width(width);
 
-		var imgSrc = imageFullScreen.attr('src');
+		var imgSrc = imageBase.attr('src');
 
 		if (typeof imgSrc === "string") {
-			if(this.resizeType === 'full' ){
-				if (this.originalBackgroundImageSize === null) {
-					getImgSize(imgSrc, this);
-				}
-				else{
+			if (this.originalBackgroundImageSize === null) {
+				getImgSize(imgSrc, this);
+			}
+			else{
+				if(this.resizeType === 'full' ){
+				
 					var landscapeFormat = width > height;
 
 					var ratio = width / this.originalBackgroundImageSize.width;
 					var futureHeight = this.originalBackgroundImageSize.height*ratio;
 					if (futureHeight >= height) {
-						imageFullScreen.height('auto');
-						imageFullScreen.width(width);
+						imageBase.height('auto');
+						imageBase.width(width);
 					}
 					else{
-						imageFullScreen.width('auto');
-						imageFullScreen.height(height);
+						imageBase.width('auto');
+						imageBase.height(height);
 					}
-					imageFullScreen.css('left', (width-imageFullScreen.width())/2+'px');
+					imageBase.css('left', (width-imageBase.width())/2+'px');
+
+				}
+				else if(this.resizeType === 'height'){
+					imageBase.height(height-$('header').first().height());
 				}
 			}
 		}
 
 		if (this.mustBlurWhenActive() && this.blurView) {
-			this.blurView.width(imageFullScreen.width());
-			this.blurView.height(imageFullScreen.height());
-			this.blurView.css('left', (width-imageFullScreen.width())/2+'px');
+			this.blurView.width(imageBase.width());
+			this.blurView.height(imageBase.height());
+
+			if(this.resizeType === 'full' ){
+				this.blurView.css('left', (width-imageBase.width())/2+'px');
+			}
+			else if(this.resizeType === 'height'){
+				console.log('TO DO');
+			}
 		}
 	}
 
