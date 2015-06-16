@@ -58,7 +58,7 @@ var ScreenBackground = (function() {
 
 	ScreenBackground.prototype.screenResize = function (width, height) {
 		var imageBase = this.$.find('img').first();
-		this.$.height(height);
+		this.$.height(height-$('header').first().height());
 		this.$.width(width);
 
 		var imgSrc = imageBase.attr('src');

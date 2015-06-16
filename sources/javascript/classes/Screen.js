@@ -61,6 +61,7 @@ var Screen = (function() {
 
 	Screen.prototype.changeWidth = function (newWidth) {
 		this.$.width(newWidth);
+		//this.$.find('.screen-common-elements').width(newWidth);
 	};
 
 	Screen.prototype.changeHeight = function (newHeight) {

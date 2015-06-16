@@ -1,2 +1,56 @@
 #screen-application-background-main
 	background-color: color.screenApplicationBackground
+	
+.screen-application-ipad
+	display block
+	span(5/12)
+	shift(7/12)
+	max-height 100%
+	max-width 100%
+	width 451px
+	height 611px
+	align(direction = vertical)
+	position: relative
+
+
+
+.screen-aplication-ipad-background
+	position: absolute
+	top 0
+	left 0
+	max-height 100%
+	max-width 100%
+	width : size_width.ipadBackground
+	height : size_height.ipadBackground
+	background-repeat : no-repeat
+	background-image : imageNamed('screen-application-ipad-air-background.png')
+	background-size : cover
+	
+.screen-application-ipad-content
+	position: absolute
+	width : size_width.ipadContent
+	height : size_height.ipadContent
+	top 45px
+	left : ((size_width.ipadBackground - size_width.ipadContent) / 2)
+	background-repeat : no-repeat
+	background-size : cover
+	display none
+	
+	&.current
+		display block
+		
+	&.ipad-content-pages
+		background-image : imageNamed('screen-application-ipad-air-content-pages.jpg')
+	&.ipad-content-stories
+		background-image : imageNamed('screen-application-ipad-air-content-stories.jpg')
+	&.ipad-content-programmation
+		background-image : imageNamed('screen-application-ipad-air-content-programmation.jpg')
+		
+.csstransitions
+	.screen-application-ipad-content
+		display block
+		opacity 0
+		transition opacity 0.3s ease-out
+		
+		&.current
+			opacity 1

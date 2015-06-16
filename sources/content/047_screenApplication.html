@@ -1,12 +1,21 @@
 <section id="screen-application" class="screen">
 	<div id="screen-application-background-main" class="screen-background">
 	</div>
+	
+	<div class="screen-background">
+		<div class="screen-application-ipad">
+			<div class="screen-aplication-ipad-background"></div>
+			<div class="screen-application-ipad-content ipad-content-stories" data-related-feature-id="application-feature-stories"></div>
+			<div class="screen-application-ipad-content ipad-content-pages" data-related-feature-id="application-feature-pages"></div>
+			<div class="screen-application-ipad-content ipad-content-programmation" data-related-feature-id="application-feature-programmation"></div>
+		</div>
+	</div>
 
 	<div class="screen-sub-part" data-scroll-limit-appear="-35">
 		<div class="screen-sub-part-outer-wrapper movable">
 			<div class="screen-sub-part-inner-wrapper">
 				<div class="application-step">
-					<div class="feature">
+					<div id="application-feature-stories" class="feature">
 						<div class="feature-title">
 							<div class="feature-title-decoration"></div>
 							<h5>Stories</h5>
@@ -23,7 +32,7 @@
 		<div class="screen-sub-part-outer-wrapper movable">
 			<div class="screen-sub-part-inner-wrapper">
 				<div class="application-step">
-					<div class="feature">
+					<div id="application-feature-pages" class="feature">
 						<div class="feature-title">
 							<div class="feature-title-decoration"></div>
 							<h5>Pages</h5>
@@ -36,11 +45,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="screen-sub-part">
+	<div class="screen-sub-part" data-scroll-limit-disappear="60">
 		<div class="screen-sub-part-outer-wrapper movable">
 			<div class="screen-sub-part-inner-wrapper">
 				<div class="application-step">
-					<div class="feature">
+					<div id="application-feature-programmation" class="feature">
 						<div class="feature-title">
 							<div class="feature-title-decoration"></div>
 							<h5>Programmation</h5>

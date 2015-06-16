@@ -18,6 +18,7 @@ var ScreenSubPart = (function() {
 		this.scrollLimitAppear = -18;
 
 		this.animatedPicto = null;
+		this.featureID = null;
 
 		this.init();
 	}
@@ -37,6 +38,11 @@ var ScreenSubPart = (function() {
 		var animatedPicto = this.$.find('.animated-picto').first();
 		if (animatedPicto.size()) {
 			this.animatedPicto = new AnimatedPicto(animatedPicto);
+		}
+
+		var feature = this.$.find('.feature').first();
+		if (feature.size()) {
+			this.featureID = feature.attr('id');
 		}
 	};
 
@@ -80,6 +86,15 @@ var ScreenSubPart = (function() {
 			if(scrollPositionInPercentage >= -5){
 				if(this.animatedPicto){
 					this.animatedPicto.play();
+				}	
+			}
+
+			if(scrollPositionInPercentage >= -12){
+				if(typeof this.featureID === "string"){
+					$('.screen-application-ipad-content').removeClass('current');
+					if (this.featureID.length > 0) {
+						$('.screen-application-ipad-content[data-related-feature-id="'+this.featureID+'"]').addClass('current');
+					}
 				}
 			}
 		}
