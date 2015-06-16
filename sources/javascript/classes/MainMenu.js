@@ -48,8 +48,8 @@ var MainMenu = (function() {
 	};
 
 	MainMenu.prototype.selectScreen = function (screenIndex) {
-		var documentBody = document.body || document.documentElement;
-		$(documentBody).animate({scrollTop: this.screenGroupTarget.screens[screenIndex].$.offset().top}, 250);
+		//var documentBody = document.body || document.documentElement;
+		$('html, body').animate({scrollTop: this.screenGroupTarget.screens[screenIndex].$.offset().top}, 250);
 	};
 
 	MainMenu.prototype.underlineElementMenuWithTargetID = function (targetID) {

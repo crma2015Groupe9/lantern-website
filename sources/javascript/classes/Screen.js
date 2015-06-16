@@ -65,7 +65,7 @@ var Screen = (function() {
 
 	Screen.prototype.changeHeight = function (newHeight) {
 		var subpartCount = this.subParts.length;
-		this.$.height(newHeight*(subpartCount === 0 ? 1 : subpartCount+0.3));
+		this.$.height(newHeight*(subpartCount === 0 ? 1 : subpartCount+0.5));
 	};
 
 	Screen.prototype.onScroll = function (scroll) {
