@@ -69,6 +69,16 @@ var onDocumentReady = function onDocumentReady(){
 
 	var slider = new Slider($('.slider'));
 
+	var objectFXSounds = $('#object-fx-sounds');
+
+	var updateObjectFX = function updateObjectFX(deltaTime, resizeChange) {
+		if(resizeChange){
+			objectFXSounds.height(objectFXSounds.width());
+		}
+	};
+
+	updateObjectFX(0, true);
+
 	/*-----------------------*/
 
 	var time = {};
@@ -132,6 +142,8 @@ var onDocumentReady = function onDocumentReady(){
 		//screenGroup.onScroll(scroll);
 
 		screenGroup.update(time);
+
+		updateObjectFX(time.delta, resize.both);
 
 		requestAnimationFrame(requestAnimationFrameEvent);
 	});
