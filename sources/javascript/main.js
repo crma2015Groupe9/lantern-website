@@ -124,16 +124,22 @@ var onDocumentReady = function onDocumentReady(){
 	requestAnimationFrame(function requestAnimationFrameEvent() {
 		updateTime();
 		updateResize();
-		updateScroll();
+		//updateScroll();
 
-		mainMenu.onScroll(scroll);
+		//mainMenu.onScroll(scroll);
 
 		screenGroup.onResize(resize);
-		screenGroup.onScroll(scroll);
+		//screenGroup.onScroll(scroll);
 
 		screenGroup.update(time);
 
 		requestAnimationFrame(requestAnimationFrameEvent);
+	});
+
+	$( window ).scroll(function() {
+		updateScroll();
+		mainMenu.onScroll(scroll);
+		screenGroup.onScroll(scroll);
 	});
 };
 

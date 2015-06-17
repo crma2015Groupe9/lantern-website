@@ -66,7 +66,7 @@ var Screen = (function() {
 
 	Screen.prototype.changeHeight = function (newHeight) {
 		var subpartCount = this.subParts.length;
-		this.$.height(newHeight*(subpartCount === 0 ? 1 : subpartCount+0.4));
+		this.$.height(newHeight*(subpartCount === 0 ? 1 : subpartCount));
 	};
 
 	Screen.prototype.onScroll = function (scroll) {
@@ -91,19 +91,37 @@ var Screen = (function() {
 	};
 
 	Screen.prototype.updateScrollPosition = function (scrollPosition) {
-		scrollPosition > -50 ? this.active() : this.unactive();
+		var scrollPositionInPercentage = scrollPosition/this.$.height()*100;
+		/*scrollPosition > -45 */ scrollPositionInPercentage > -18 ? this.active() : this.unactive();
+		scrollPositionInPercentage >= -1 ? this.activeBlur() : this.unactiveBlur();
 
-		for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
-			this.backgrounds[i].$.css('top', (scrollPosition > 0 ? scrollPosition : 0)+'px');
-		}
+
+		//for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
+			//this.backgrounds[i].$.css('top', (scrollPosition > 0 ? scrollPosition : 0)+'px');
+		//}
+	};
+
+	Screen.prototype.activeBlur = function (active) {
+		active === false ? this.$.removeClass('active-blur') : this.$.addClass('active-blur');
+	};
+
+	Screen.prototype.unactiveBlur = function () {
+		this.activeBlur(false);
 	};
 
 	Screen.prototype.active = function (active) {
 		active === false ? this.$.removeClass('active') : this.$.addClass('active');
+		for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
+			this.backgrounds[i].$.addClass('showed');
+		}
 	};
 
 	Screen.prototype.unactive = function () {
 		this.active(false);
+
+		for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
+			this.backgrounds[i].$.removeClass('showed');
+		}
 	};
 
 	return Screen;
