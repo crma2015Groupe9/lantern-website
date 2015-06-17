@@ -9,10 +9,12 @@ var Slider = (function() {
 
 		this.$ = jqueryNode;
 		this.autoplaySpeed = 5000;
+		this.speed = 750;
 
 		this.init();
 		this.beforeChange();
 		this.afterChange();
+		this.selectItem();
 	}
 
 	Slider.prototype.init = function() {
@@ -26,7 +28,7 @@ var Slider = (function() {
 			centerMode: true,
 			autoplay: true,
 			autoplaySpeed: self.autoplaySpeed,
-			speed: 750,
+			speed: self.speed,
 			pauseOnHover: false,
 			responsive: [
 				{
@@ -50,6 +52,8 @@ var Slider = (function() {
 	};
 
 	Slider.prototype.beforeChange = function() {
+		var self = this;
+
 		this.$.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
 			var $nextSlide = $('.slider [data-slick-index='+nextSlide+']');
 
@@ -64,6 +68,12 @@ var Slider = (function() {
 				$animalName.text(name);
 				$animalName.fadeIn(400);
 			});
+
+			var $loader = $('div.loading .loader');
+			var width = $loader.width();
+			if (width > 0 && width < $loader.parent().width()) {
+				self.resetLoader();
+			}
 		});
 	};
 
@@ -71,28 +81,50 @@ var Slider = (function() {
 		var self = this;
 
 		this.$.on('afterChange', function(event, slick, currentSlide, nextSlide) {
-			self.animateLoader();
+			var $loader = $('div.loading .loader');
+			var width = $loader.width();
+
+			if (width == 0) {
+				self.animateLoader(false);
+			}
 		});
 	};
 
-	Slider.prototype.animateLoader = function() {
+	Slider.prototype.animateLoader = function(reset) {
 		var $loader = $('div.loading .loader');
-		TweenLite.to($loader, this.autoplaySpeed / 1000, {width: '100%', ease: Power1.easeInOut, onComplete: function() {
+		var duration = this.autoplaySpeed / 1000;
+
+		TweenLite.to($loader, duration, {width: '100%', ease: Power1.easeInOut, onComplete: function() {
 			TweenLite.to($loader, 0.5, {left: '100%', ease: Power1.easeInOut, onComplete: function() {
 				$loader.css({left: 0, width: 0});
 			}});
 		}});
 	};
 
-	Slider.prototype.pagination = function() {
+	Slider.prototype.resetLoader = function() {
 		var self = this;
 
-		$('.pagination button').on('click', function() {
-			var index = $(this).index();
-
-			self.$.slick('slickGoTo', index - 1);
-		});
+		var $loader = $('div.loading .loader');
+		TweenLite.to($loader, self.speed / 1000, {width: 0, ease: Power1.easeInOut, onComplete: function() {
+			self.animateLoader(true);
+		}});
 	};
+
+	Slider.prototype.selectItem = function() {
+		var self = this;
+
+		$('.slick-slide').on('click', function() {
+			var currentIndex = self.$.slick('slickCurrentSlide');
+			var index = $(this).attr('data-slick-index');
+
+			if (index < currentIndex) {
+				self.$.slick('slickPrev');
+			}
+			else if (index > currentIndex) {
+				self.$.slick('slickNext');
+			}
+		});
+	}
 
 	return Slider;
 }());
