@@ -69,11 +69,13 @@ var onDocumentReady = function onDocumentReady(){
 
 	var slider = new Slider($('.slider'));
 
-	var objectFXSounds = $('#object-fx-sounds');
+	var objectFXSounds = $('#object-fx-sounds'),
+		objectFXLights = $('#object-fx-lights');
 
 	var updateObjectFX = function updateObjectFX(deltaTime, resizeChange) {
 		if(resizeChange){
-			objectFXSounds.height(objectFXSounds.width());
+			/*objectFXSounds.height(objectFXSounds.width());
+			objectFXLights.height(objectFXLights.width());*/
 		}
 	};
 

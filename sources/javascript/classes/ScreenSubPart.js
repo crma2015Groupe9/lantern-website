@@ -91,9 +91,9 @@ var ScreenSubPart = (function() {
 
 			if(scrollPositionInPercentage >= -18){
 				if(typeof this.featureID === "string"){
-					$('.screen-application-ipad-content').removeClass('current');
+					$('[data-related-feature-id]').removeClass('current');
 					if (this.featureID.length > 0) {
-						$('.screen-application-ipad-content[data-related-feature-id="'+this.featureID+'"]').addClass('current');
+						$('[data-related-feature-id="'+this.featureID+'"]').addClass('current');
 					}
 				}
 			}

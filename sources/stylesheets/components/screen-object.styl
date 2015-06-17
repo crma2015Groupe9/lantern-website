@@ -2,56 +2,17 @@
 	img{
 		align(direction = vertical)
 		max-height 625px
-		shift(0.4/12)
+		shift(0/12)
 	}
 	
-#object-fx-sounds
+#object-fx
 	align(direction = vertical)
-	width 390px
-	max-height 395px
-	max-width 395px
-	//background-color: red
-	top 42%
-	shift(1.25/12)
+	height 550px
+	width 668px
+
+.screen-object-background-fx
+	opacity: 0
+	transition opacity 0.3s ease-in-out
 	
-	> div
-		align(direction = both)
-		border-radius 50%
-		width 0
-		height 0
-		opacity 1
-		max-height 100%
-		max-width 100%
-		background-color: white
-
-@keyframes soundFX {
-  0% {
-    width : 0%
-    height : 0%
-    opacity : 1
-  }
-  60% {
-    width : 92%
-    height : 92%
-    opacity : 0.6
-  }
-  92% {
-  	width : 100%
-    height : 100%
-    opacity : 0
-  }
-  100%{
-  	width : 100%
-    height : 100%
-    opacity : 0
-  }
-}
-
-#object-fx-sounds-one
-	animation soundFX 2.4s infinite ease-in-out
-
-#object-fx-sounds-two
-	animation soundFX 2.4s infinite ease-in-out 0.8s
-
-#object-fx-sounds-three
-	animation soundFX 2.4s infinite ease-in-out 1s
+	&.current
+		opacity: 1

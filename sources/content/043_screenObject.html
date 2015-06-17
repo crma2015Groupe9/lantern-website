@@ -3,11 +3,40 @@
 	</div>
 
 	<div class="screen-background">
-		<div id="object-fx-sounds" class="screen-object-background-fx">
-			<div id="object-fx-sounds-one"></div>
-			<div id="object-fx-sounds-two"></div>
-			<div id="object-fx-sounds-three"></div>
-		</div>	
+		<div id="object-fx">
+			<div id="object-fx-sounds" class="screen-object-background-fx" data-related-feature-id="object-feature-sound">
+				<div id="object-fx-sounds-one"></div>
+				<div id="object-fx-sounds-two"></div>
+				<div id="object-fx-sounds-three"></div>
+			</div>
+
+			<div id="object-fx-lights" class="screen-object-background-fx" data-related-feature-id="object-feature-light">
+				<div id="object-fx-lights-one" class="object-fx-light-spot">
+					<div class="object-fx-light-spot-center"></div>
+					<div class="object-fx-light-spot-around"></div>
+				</div>
+				<div id="object-fx-lights-two" class="object-fx-light-spot">
+					<div class="object-fx-light-spot-center"></div>
+					<div class="object-fx-light-spot-around"></div>
+				</div>
+				<div id="object-fx-lights-three" class="object-fx-light-spot">
+					<div class="object-fx-light-spot-center"></div>
+					<div class="object-fx-light-spot-around"></div>
+				</div>
+				<div id="object-fx-lights-four" class="object-fx-light-spot">
+					<div class="object-fx-light-spot-center"></div>
+					<div class="object-fx-light-spot-around"></div>
+				</div>
+				<div id="object-fx-lights-five" class="object-fx-light-spot">
+					<div class="object-fx-light-spot-center"></div>
+					<div class="object-fx-light-spot-around"></div>
+				</div>
+				<div id="object-fx-lights-six" class="object-fx-light-spot">
+					<div class="object-fx-light-spot-center"></div>
+					<div class="object-fx-light-spot-around"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div id="screen-object-background-left" class="screen-background" data-image-url="./images/screen-object-background-left.png" data-resize-type="height"></div>
@@ -16,7 +45,7 @@
 		<div class="screen-sub-part-outer-wrapper movable">
 			<div class="screen-sub-part-inner-wrapper">
 				<div class="object-step">
-					<div class="feature">
+					<div id="object-feature-light" class="feature">
 						<div class="feature-title">
 							<div class="feature-title-decoration"></div>
 							<h5>Light</h5>
@@ -33,7 +62,7 @@
 		<div class="screen-sub-part-outer-wrapper movable">
 			<div class="screen-sub-part-inner-wrapper">
 				<div class="object-step">
-					<div class="feature">
+					<div id="object-feature-sound" class="feature">
 						<div class="feature-title">
 							<div class="feature-title-decoration"></div>
 							<h5>Sound</h5>

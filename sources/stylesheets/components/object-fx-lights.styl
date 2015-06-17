@@ -1,0 +1,113 @@
+#object-fx-lights
+	height 200px
+	width 635px         
+	
+	> div
+		position: absolute
+		//background-color: green
+		display block
+		width 95px
+		height 95px
+		
+		&#object-fx-lights-one
+			//background-color: yellow
+			width 145px
+			height 145px
+
+#object-fx-lights-one
+	top 112px
+	left 258px
+
+#object-fx-lights-two
+	top 225px
+	left 22px
+	
+#object-fx-lights-three
+	top 70px
+	left 85px
+	
+#object-fx-lights-four
+	top -15px
+	left 280px
+	
+#object-fx-lights-five
+	top 70px
+	right 75px
+	
+#object-fx-lights-six
+	top 225px
+	right 12px
+
+.object-fx-light-spot-center, .object-fx-light-spot-around
+	background-color: color.fxLightsSpot
+	display block
+	border-radius 50%
+	align(direction = both)
+
+@keyframes lightFX_centerPoint {
+  0% {
+    width : 0%
+    height : 0%
+    opacity : 1
+  }
+  28% {
+  	width : 100%
+    height : 100%
+    opacity : 1
+  }
+  31% {
+  	width : 100%
+    height : 100%
+    opacity : 1
+  }
+  33%{
+  	width : 100%
+    height : 100%
+  	opacity : 0.8
+  }
+  48%{
+  	width : 65%
+    height : 65%
+    opacity : 0
+  }
+  100%{
+  	width 0
+  	height 0
+  	opacity 0
+  }
+}
+
+@keyframes lightFX_aroundPoint {
+  0% {
+    width : 0%
+    height : 0%
+    opacity : 1
+  }
+  12% {
+  	width : 145%
+    height : 145%
+    opacity : 0.2
+  }
+  45%{
+    opacity : 0
+  }
+  100%{
+    opacity : 0
+  }
+}
+
+.object-fx-light-spot-center{
+	animation : lightFX_centerPoint 3.6s infinite cubic-bezier(0.230, 1.000, 0.320, 1.000)
+    animation-delay :0.2s;
+}
+    
+.object-fx-light-spot-around{
+	animation : lightFX_aroundPoint 3.6s infinite cubic-bezier(0.645, 0.045, 0.355, 1.000)
+    animation-delay :0.2s;
+}    
+
+#object-fx-lights-one{
+    .object-fx-light-spot-center, .object-fx-light-spot-around{
+        animation-delay :0s;
+    }
+}
