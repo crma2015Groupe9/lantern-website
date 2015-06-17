@@ -2,7 +2,7 @@
 	background-color: color.animalsBackground
 
 	.animals-container
-		padding-top 5%
+		padding-top 8%
 
 	h2
 		color #FFF
@@ -22,8 +22,6 @@
 			top: 50%
 			left: 50%
 			transform: translate(-50%, -50%)
-
-#screen-animals
 
 #screen-animals .pagination
 	margin-top -85px
@@ -47,7 +45,7 @@
 		height 2px
 		background-color: #FFF
 		border none
-		
+
 		&.loader
 			width 0
 			height 4px
@@ -55,3 +53,11 @@
 			position absolute
 			top -1px
 			left 0
+
+@media screen and (max-width: 1200px)
+	#screen-animals .animals-container
+		padding-top 15%
+
+@media screen and (max-width: 720px)
+	#screen-animals .animals-container
+		padding-top 20%

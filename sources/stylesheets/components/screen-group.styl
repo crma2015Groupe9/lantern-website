@@ -5,7 +5,7 @@
 .screen
 	width 100%
 	position: relative
-		
+
 .cssfilters
 	.screen
 		.screen-background.must-blur-when-active > .blur-view{
@@ -18,7 +18,7 @@
 				filter: blur(10px);
 				-webkit-filter: blur(10px);
 			}
-	
+
 
 .screen-sub-part
 	width auto
@@ -40,11 +40,11 @@
 	.screen-sub-part
 		.screen-sub-part-outer-wrapper.movable
 			transition top 0.6s ease-out
-		
+
 		&.hidden-on-top
 			.screen-sub-part-outer-wrapper.movable
 				top -100%
-		
+
 		&.showed
 			.screen-sub-part-outer-wrapper.movable
 				top 0
@@ -87,9 +87,23 @@
 	max-width: 100%;
 	span(ratio = 6/12)
 	align(direction = both)
-	
+
 .screen-common-elements
 	width 100%
 	position: absolute
 	top 0
 	left 0
+
+@media screen and (max-width: 1200px)
+	.section-container
+		width 80%
+
+@media screen and (max-width: 1024px)
+	.section-container
+		width 90%
+		margin-top 15%
+		padding: 0 10px 0 10px
+
+@media screen and (max-width: 720px)
+	.section-container
+		margin-top 25%

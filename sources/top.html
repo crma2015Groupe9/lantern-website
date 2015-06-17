@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Lantern - Un ami qui éclaire ma nuit</title>
-    <script type="text/javascript" src="./fallback.min.js"></script>
+	<head>
+		<title>Lantern - A brightening friend for my bedtime</title>
+		<link rel="icon" href="images/favicon.ico" />
 
-    <script type="text/javascript">
-    	var fallback = fallback || false;
-    	if(fallback) {
-    		fallback.load({
-                stylesheetsVendor : "./stylesheets-vendor.css",
-    			stylesheet : "./main.css",
-    			javascript : ["./javascript-vendor.js", "./main.min.js"]
-    		});
-    		
-    		fallback.ready(function () {
-    			main();
-    		});
-    	}
-    </script>
-  </head>
-  <body>
+		<script type="text/javascript" src="./fallback.min.js"></script>
+
+		<script type="text/javascript">
+			var fallback = fallback || false;
+			if(fallback) {
+				fallback.load({
+					stylesheetsVendor : "./stylesheets-vendor.css",
+					stylesheet : "./main.css",
+					javascript : ["./javascript-vendor.js", "./main.min.js"]
+				});
+
+				fallback.ready(function () {
+					main();
+				});
+			}
+		</script>
+		</head>
+	<body>

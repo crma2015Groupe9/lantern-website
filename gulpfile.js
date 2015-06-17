@@ -44,6 +44,7 @@ var fallbackPath = path.join(sourcePath, 'bower_components/fallback/fallback.min
 
 var javascriptVendors = [];
 javascriptVendors.push(path.join(sourcePath, 'bower_components/jquery/dist/jquery.min.js'));
+javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/jquery.color.js'));
 javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/pxloader-all.min.js'));
 javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/modernizr.min.js'));
 javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/slick.min.js'));
