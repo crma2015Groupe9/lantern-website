@@ -45,3 +45,26 @@ header
 .csstransitions
 	.main-menu-element-underline
 		transition left 0.3s ease-out
+		
+		
+button.main-menu-mobile
+	width 54px
+	height 55px
+	border none
+	background: imageNamed('menu-arrow.png') no-repeat #FFF 0 -55px
+	display none
+	position absolute
+	top 0
+	right 0
+	z-index 200
+	
+@media screen and (max-width: 768px)
+	.main-menu-element
+		span(ratios = 6/6)
+		text-align left
+		
+		&.element
+			display none
+	
+	button.main-menu-mobile
+		display inline-block
