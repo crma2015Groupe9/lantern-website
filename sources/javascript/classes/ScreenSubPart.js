@@ -76,20 +76,20 @@ var ScreenSubPart = (function() {
 				this.$.removeClass('hidden-on-top');
 				this.$.addClass('showed');
 
-				this.innerWrapper.css('top', scrollPosition+'px');
+				//this.innerWrapper.css('top', scrollPosition+'px');
 			}
 			else{
 				this.$.removeClass('hidden-on-top');
 				this.$.removeClass('showed');
 			}
 
-			if(scrollPositionInPercentage >= -5){
+			if(scrollPositionInPercentage >= -12){
 				if(this.animatedPicto){
 					this.animatedPicto.play();
 				}	
 			}
 
-			if(scrollPositionInPercentage >= -12){
+			if(scrollPositionInPercentage >= -18){
 				if(typeof this.featureID === "string"){
 					$('.screen-application-ipad-content').removeClass('current');
 					if (this.featureID.length > 0) {
