@@ -54,7 +54,7 @@ var Slider = (function() {
 			var $nextSlide = $('.slider [data-slick-index='+nextSlide+']');
 
 			var nextColor = $nextSlide.attr('data-color');
-			$('#screen-animals').animate({
+			$('#screen-animals-background-main').animate({
 				backgroundColor: nextColor
 			});
 
