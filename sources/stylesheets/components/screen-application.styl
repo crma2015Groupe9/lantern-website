@@ -1,6 +1,89 @@
 #screen-application-background-main
 	background-color: color.screenApplicationBackground
-	
+
+#screen-application-background-pictos
+	.picto
+		position: absolute
+		transition : right 0.8s ease-in-out, opacity 0.8s ease-in
+		
+		&.nuage-app-one
+			top 25%			
+			opacity 0
+			right -10%
+			
+			&.active
+				right 7%
+				opacity 1
+			
+			&.unactive
+				right 18%
+				opacity 0
+			
+		&.nuage-app-two
+			opacity 0
+			right -20%
+			bottom 35%
+			
+			&.active
+				opacity 1
+				right 33%
+			
+			&.unactive
+				right 48%
+				opacity 0
+		
+		&.nuage-app-three
+			opacity 0
+			right -25%
+			top 35%
+			
+			&.active
+				opacity 1
+				right 5%
+			
+			&.unactive
+				right 38%
+				opacity 0
+		
+		&.nuage-app-four
+			opacity 0
+			right -12%
+			bottom 37%
+			
+			&.active
+				opacity 1
+				right 41%
+			
+			&.unactive
+				right 67%
+				opacity 0
+				
+		&.nuage-app-five
+			opacity 0
+			right -12%
+			top 25%
+			
+			&.active
+				opacity 1
+				right 8%
+			
+			&.unactive
+				right 18%
+				opacity 0
+				
+		&.nuage-app-six
+			opacity 0
+			right -16%
+			bottom 32%
+			
+			&.active
+				opacity 1
+				right 34%
+			
+			&.unactive
+				right 62%
+				opacity 0
+
 .screen-application-ipad
 	display block
 	span(5/12)

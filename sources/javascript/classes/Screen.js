@@ -66,7 +66,7 @@ var Screen = (function() {
 
 	Screen.prototype.changeHeight = function (newHeight) {
 		var subpartCount = this.subParts.length;
-		this.$.height(newHeight*(subpartCount === 0 ? 1 : subpartCount));
+		this.$.height(newHeight*(subpartCount === 0 ? 1 : subpartCount+0.1));
 	};
 
 	Screen.prototype.onScroll = function (scroll) {
@@ -93,7 +93,7 @@ var Screen = (function() {
 	Screen.prototype.updateScrollPosition = function (scrollPosition) {
 		var scrollPositionInPercentage = scrollPosition/this.$.height()*100;
 		/*scrollPosition > -45 */ scrollPositionInPercentage > -18 ? this.active() : this.unactive();
-		scrollPositionInPercentage >= -1 ? this.activeBlur() : this.unactiveBlur();
+		scrollPositionInPercentage >= -1.5 ? this.activeBlur() : this.unactiveBlur();
 
 
 		//for(var i = 0, imax = this.backgrounds.length;i<imax;i++){

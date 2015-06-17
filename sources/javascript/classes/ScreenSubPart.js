@@ -19,6 +19,7 @@ var ScreenSubPart = (function() {
 
 		this.animatedPicto = null;
 		this.featureID = null;
+		this.elementsToActive = null;
 
 		this.init();
 	}
@@ -43,6 +44,12 @@ var ScreenSubPart = (function() {
 		var feature = this.$.find('.feature').first();
 		if (feature.size()) {
 			this.featureID = feature.attr('id');
+
+			if (typeof this.featureID === 'string') {
+				if (this.featureID.length > 0) {
+					this.elementsToActive = $('[data-trigger-feature-id="'+this.featureID+'"]');
+				}
+			}
 		}
 	};
 
@@ -71,29 +78,58 @@ var ScreenSubPart = (function() {
 			if (scrollPositionInPercentage > this.scrollLimitDisappear) {
 				this.$.addClass('hidden-on-top');
 				this.$.removeClass('showed');
+
+				/*if(this.animatedPicto){
+					this.animatedPicto.stop();
+				}	*/
+
+				if (this.elementsToActive) {
+					this.elementsToActive.removeClass('active');
+					this.elementsToActive.addClass('unactive');
+				}
 			}
 			else if (scrollPositionInPercentage > this.scrollLimitAppear) {
 				this.$.removeClass('hidden-on-top');
 				this.$.addClass('showed');
-
+				if (this.elementsToActive) {
+					this.elementsToActive.removeClass('unactive');
+					this.elementsToActive.addClass('active');
+				}
 				//this.innerWrapper.css('top', scrollPosition+'px');
 			}
 			else{
 				this.$.removeClass('hidden-on-top');
 				this.$.removeClass('showed');
+				if (this.elementsToActive) {
+					this.elementsToActive.removeClass('unactive');
+					this.elementsToActive.removeClass('active');
+				}
+
+				/*if(this.animatedPicto){
+					this.animatedPicto.stop();
+				}	*/
 			}
 
-			if(scrollPositionInPercentage >= -12){
-				if(this.animatedPicto){
+			if(this.animatedPicto){
+				if (scrollPositionInPercentage >= 98) {
+					this.animatedPicto.stop();
+				}
+				else if(scrollPositionInPercentage >= -16){
 					this.animatedPicto.play();
-				}	
+				}
+				else if(scrollPositionInPercentage <= -55){
+					this.animatedPicto.stop();
+				}
 			}
 
 			if(scrollPositionInPercentage >= -18){
 				if(typeof this.featureID === "string"){
 					$('[data-related-feature-id]').removeClass('current');
+					$('[data-active-for-feature-id]').removeClass('active');
+
 					if (this.featureID.length > 0) {
 						$('[data-related-feature-id="'+this.featureID+'"]').addClass('current');
+						$('[data-active-for-feature-id="'+this.featureID+'"]').addClass('active');
 					}
 				}
 			}

@@ -65,10 +65,19 @@ var AnimatedPicto = (function() {
 		this.isPlaying = false;
 	};
 
+	AnimatedPicto.prototype.stop = function () {
+		this.reset();
+		this.pause();
+	}
+
 	AnimatedPicto.prototype.start = function () {
-		this.setTime(0);
+		this.reset;
 		this.play();
 	};
+
+	AnimatedPicto.prototype.reset = function () {
+		this.setTime(0);
+	}
 
 	AnimatedPicto.prototype.loadImageForIndex = function (index) {
 		this.$.append('<div class="animated-picto-step '+this.getStepClassIdentifierForIndex(index)+'"></div>');
