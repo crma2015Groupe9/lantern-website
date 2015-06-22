@@ -20,7 +20,7 @@ header
 	&.main-element
 		background-color : color.mainMenu
 		z-index: 10
-	
+
 	&:hover, &:focus
 		cursor : pointer
 
@@ -29,12 +29,12 @@ header
 	text-align : center
 	font_menu_element(18)
 	letter-spacing : (40/100) px
-	
+
 	a{
 		color : color.mainMenuElementLabel
 		text-decoration : none
 	}
-	
+
 .main-menu-element-underline
 	width 148px
 	height 4px
@@ -45,8 +45,8 @@ header
 .csstransitions
 	.main-menu-element-underline
 		transition left 0.3s ease-out
-		
-		
+
+
 button.main-menu-mobile
 	width 54px
 	height 55px
@@ -57,14 +57,32 @@ button.main-menu-mobile
 	top 0
 	right 0
 	z-index 200
-	
+
 @media screen and (max-width: 768px)
+	header, .main-menu
+		height 100%
+		background-color: #FFF
 	.main-menu-element
 		span(ratios = 6/6)
 		text-align left
-		
+
 		&.element
-			display none
-	
+			// display none
+
+			.main-menu-element-label
+				width 168px
+				margin 0 auto
+				text-align left
+
+			a:before
+				content ''
+				display inline-block
+				width 29px
+				border: solid color.customBlue 2px
+				padding-left 20px
+				position relative
+				top -3px
+				left -20px
+
 	button.main-menu-mobile
 		display inline-block
