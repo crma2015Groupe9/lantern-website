@@ -66,7 +66,7 @@ var MainMenu = (function() {
 
 	MainMenu.prototype.onScroll = function (scroll) {
 		if (scroll.change) {
-			this.underlineElementMenuWithTargetID(this.screenGroupTarget.getScreenIdentifierForScrollPosition(scroll.position+(18/100*$(window).height())));
+			this.underlineElementMenuWithTargetID(this.screenGroupTarget.getScreenIdentifierForScrollPosition(scroll.position+(-(settings.screenSubPartLimitAppear)/100*$(window).height())));
 		}
 	};
 

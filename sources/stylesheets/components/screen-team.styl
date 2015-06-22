@@ -7,6 +7,17 @@
 
 #screen-team-background-main
 	background-color: #FFF
+	
+#screen-team-background-bottom
+	background-color : color.customBlue
+	max-height 50px
+	top auto
+	bottom -50px
+	transition bottom 0.3s ease-out
+	
+	&.showed
+		transition bottom 0.4s ease-in-out 0.6s
+		bottom 0
 
 #screen-team .teammate
 	column(1/4)

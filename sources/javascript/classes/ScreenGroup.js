@@ -10,6 +10,9 @@ var ScreenGroup = (function() {
 		this.$ = jqueryNode;
 		this.screens = [];
 
+		this.currentFeatureID = null;
+		this.previousFeatureID = null;
+
 		this.init();
 	}
 
@@ -34,6 +37,8 @@ var ScreenGroup = (function() {
 		for(var i = 0, imax = this.screens.length;i<imax;i++){
 			this.screens[i].onScroll(scroll);
 		}
+
+		this.activeCurrentFeature();
 	};
 
 	ScreenGroup.prototype.update = function (time) {
@@ -49,12 +54,26 @@ var ScreenGroup = (function() {
 			var currentScreen = this.screens[i];
 			var screenPosition = currentScreen.getRelativeScrollPosition(scrollPosition);
 
-			if (screenPosition>-25) {
+			if (screenPosition>=0) {
 				identifier = currentScreen.identifier;
 			}
 		}
 
+
+
 		return identifier;
+	};
+
+	ScreenGroup.prototype.activeCurrentFeature = function() {
+		if (this.currentFeatureID !== this.previousFeatureID) {
+			$('[data-related-feature-id]').removeClass('current');
+			$('[data-active-for-feature-id]').removeClass('active');
+
+			$('[data-related-feature-id="'+this.currentFeatureID+'"]').addClass('current');
+			$('[data-active-for-feature-id="'+this.currentFeatureID+'"]').addClass('active');
+
+			this.previousFeatureID = this.currentFeatureID;
+		}
 	};
 
 	return ScreenGroup;

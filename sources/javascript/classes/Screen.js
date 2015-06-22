@@ -17,6 +17,11 @@ var Screen = (function() {
 		this.subParts = [];
 		this.identifier = null;
 
+		this.scrollLimitDisappear = 100;
+		this.scrollLimitAppear = 0;
+
+		this.currentFeatureID = null;
+
 		this.init();
 	}
 
@@ -35,6 +40,9 @@ var Screen = (function() {
 		this.$.find('.screen-background').each(function (i,e) {
 			self.backgrounds.push(new ScreenBackground($(e)));
 		});
+
+		this.scrollLimitAppear = this.$.data('scroll-limit-appear') || settings.screenLimitAppear;
+		this.scrollLimitDisappear = this.$.data('scroll-limit-disappear') || settings.screenLimitDisappear;
 
 		this.changeHeight($(window).height());
 		this.updateScrollPosition(this.getRelativeScrollPosition($(document).scrollTop()));
@@ -66,16 +74,18 @@ var Screen = (function() {
 
 	Screen.prototype.changeHeight = function (newHeight) {
 		var subpartCount = this.subParts.length;
-		this.$.height(newHeight*(subpartCount === 0 ? 1 : subpartCount+0.1));
+		this.$.height(newHeight*(subpartCount === 0 ? 1 : subpartCount));
 	};
 
 	Screen.prototype.onScroll = function (scroll) {
 		if (scroll.change) {
 			this.updateScrollPosition(this.getRelativeScrollPosition(scroll.position));
-
+			//this.unactive();
 			for(var i=0,imax = this.subParts.length;i<imax;i++){
 				this.subParts[i].onScroll(scroll);
 			}
+
+			this.parentScreenGroup.currentFeatureID = this.currentFeatureID || this.parentScreenGroup.currentFeatureID;
 		}
 	};
 
@@ -92,8 +102,8 @@ var Screen = (function() {
 
 	Screen.prototype.updateScrollPosition = function (scrollPosition) {
 		var scrollPositionInPercentage = scrollPosition/this.$.height()*100;
-		/*scrollPosition > -45 */ scrollPositionInPercentage > -18 ? this.active() : this.unactive();
-		scrollPositionInPercentage >= -1.5 ? this.activeBlur() : this.unactiveBlur();
+		/*scrollPosition > -45 */ //scrollPositionInPercentage > this.scrollLimitAppear ? this.active() : this.unactive();
+		scrollPositionInPercentage >= this.scrollLimitAppear+15 ? this.activeBlur() : this.unactiveBlur();
 
 
 		//for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
@@ -114,15 +124,50 @@ var Screen = (function() {
 		for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
 			this.backgrounds[i].$.addClass('showed');
 		}
+
+		//active === false ? this.unmoveToUpNextScreen() : this.moveToUpNextScreen();
+		
 	};
 
 	Screen.prototype.unactive = function () {
+		this.currentFeatureID = null;
 		this.active(false);
 
 		for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
 			this.backgrounds[i].$.removeClass('showed');
 		}
 	};
+
+	Screen.prototype.nextScreen = function() {
+		var nextIndex = this.index + 1,
+			siblings = this.parentScreenGroup.screens,
+			nextScreen = siblings[nextIndex];
+
+		return nextScreen;
+	};
+
+	/*Screen.prototype.moveToUpNextScreen = function() {
+		var nextScreen = this.nextScreen();
+		if (nextScreen) {
+			nextScreen.moveToUp();
+		}
+	};
+
+
+	Screen.prototype.unmoveToUpNextScreen = function () {
+		var nextScreen = this.nextScreen();
+		if (nextScreen) {
+			nextScreen.unmoveToUp();
+		}
+	};
+
+	Screen.prototype.moveToUp = function() {
+		this.$.addClass('moved-to-up');
+	};
+
+	Screen.prototype.unmoveToUp = function() {
+		this.$.removeClass('moved-to-up');
+	};*/
 
 	return Screen;
 }());

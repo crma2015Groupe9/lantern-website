@@ -14,8 +14,8 @@ var ScreenSubPart = (function() {
 		this.movableOuterWrapper = null;
 		this.innerWrapper = null;
 
-		this.scrollLimitDisappear = 82;
-		this.scrollLimitAppear = -18;
+		this.scrollLimitDisappear = 100;
+		this.scrollLimitAppear = 0;
 
 		this.animatedPicto = null;
 		this.featureID = null;
@@ -30,8 +30,8 @@ var ScreenSubPart = (function() {
 		this.movableOuterWrapper = this.$.find('.screen-sub-part-outer-wrapper.movable').first();
 		this.innerWrapper = this.movableOuterWrapper.find('.screen-sub-part-inner-wrapper').first();
 
-		this.scrollLimitAppear = this.$.data('scroll-limit-appear') || -18;
-		this.scrollLimitDisappear = this.$.data('scroll-limit-disappear') || 82;
+		this.scrollLimitAppear = this.$.data('scroll-limit-appear') || settings.screenSubPartLimitAppear;
+		this.scrollLimitDisappear = this.$.data('scroll-limit-disappear') || settings.screenSubPartLimitDisappear;
 
 		this.scrollLimitAppear = parseInt(this.scrollLimitAppear, 10);
 		this.scrollLimitDisappear = parseInt(this.scrollLimitDisappear, 10);
@@ -79,57 +79,56 @@ var ScreenSubPart = (function() {
 				this.$.addClass('hidden-on-top');
 				this.$.removeClass('showed');
 
-				/*if(this.animatedPicto){
-					this.animatedPicto.stop();
-				}	*/
-
 				if (this.elementsToActive) {
 					this.elementsToActive.removeClass('active');
 					this.elementsToActive.addClass('unactive');
 				}
 			}
-			else if (scrollPositionInPercentage > this.scrollLimitAppear) {
+			else if (scrollPositionInPercentage >= this.scrollLimitAppear) {
 				this.$.removeClass('hidden-on-top');
 				this.$.addClass('showed');
+				this.parentScreen.active();
 				if (this.elementsToActive) {
 					this.elementsToActive.removeClass('unactive');
 					this.elementsToActive.addClass('active');
 				}
-				//this.innerWrapper.css('top', scrollPosition+'px');
 			}
 			else{
 				this.$.removeClass('hidden-on-top');
 				this.$.removeClass('showed');
+
+				if (this.index === 0) {
+					this.parentScreen.unactive();
+				}
+				
 				if (this.elementsToActive) {
 					this.elementsToActive.removeClass('unactive');
 					this.elementsToActive.removeClass('active');
 				}
-
-				/*if(this.animatedPicto){
-					this.animatedPicto.stop();
-				}	*/
 			}
 
 			if(this.animatedPicto){
-				if (scrollPositionInPercentage >= 98) {
+				if (scrollPositionInPercentage >= settings.screenSubPartLimitDisappear+15) {
 					this.animatedPicto.stop();
 				}
-				else if(scrollPositionInPercentage >= -16){
+				else if(scrollPositionInPercentage >= settings.screenSubPartLimitAppear){
 					this.animatedPicto.play();
 				}
-				else if(scrollPositionInPercentage <= -55){
+				else if(scrollPositionInPercentage <= settings.screenSubPartLimitAppear-15){
 					this.animatedPicto.stop();
 				}
 			}
 
-			if(scrollPositionInPercentage >= -18){
+			if(scrollPositionInPercentage >= settings.screenSubPartLimitAppear){
 				if(typeof this.featureID === "string"){
-					$('[data-related-feature-id]').removeClass('current');
-					$('[data-active-for-feature-id]').removeClass('active');
+					//this.parentScreen.currentFeatureID = null;
+					/*$('[data-related-feature-id]').removeClass('current');
+					$('[data-active-for-feature-id]').removeClass('active');*/
 
 					if (this.featureID.length > 0) {
-						$('[data-related-feature-id="'+this.featureID+'"]').addClass('current');
-						$('[data-active-for-feature-id="'+this.featureID+'"]').addClass('active');
+						/*$('[data-related-feature-id="'+this.featureID+'"]').addClass('current');
+						$('[data-active-for-feature-id="'+this.featureID+'"]').addClass('active');*/
+						this.parentScreen.currentFeatureID = this.featureID;
 					}
 				}
 			}
