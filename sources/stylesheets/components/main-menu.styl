@@ -48,8 +48,8 @@ header
 
 
 button.main-menu-mobile
-	width 54px
-	height 55px
+	width 70px
+	height 70px
 	border none
 	background: imageNamed('menu-arrow.png') no-repeat #FFF 0 -55px
 	display none
@@ -59,9 +59,15 @@ button.main-menu-mobile
 	z-index 200
 
 @media screen and (max-width: 768px)
-	header, .main-menu
+	header.open
 		height 100%
-		background-color: #FFF
+		.main-menu
+			height: 100%
+
+	.menu-content
+		display none
+		background-color #FFF
+		height 100%
 	.main-menu-element
 		span(ratios = 6/6)
 		text-align left
