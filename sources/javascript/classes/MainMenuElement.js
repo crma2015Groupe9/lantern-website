@@ -6,7 +6,7 @@ var MainMenuElement = (function() {
 		if (!(this instanceof MainMenuElement)) {
 			return new MainMenuElement(jsqueryNode);
 		}
-		
+
 		this.$ = jqueryNode;
 
 		this.screenTargetID = null;
@@ -54,7 +54,7 @@ var MainMenuElement = (function() {
 
 	MainMenuElement.prototype.click = function () {
 		this.select();
-	}
+	};
 
 	MainMenuElement.prototype.select = function () {
 		this.parentMenu.select(this.index);

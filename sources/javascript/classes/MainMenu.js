@@ -6,7 +6,7 @@ var MainMenu = (function() {
 		if (!(this instanceof MainMenu)) {
 			return new MainMenu(jqueryNode);
 		}
-		
+
 		this.$ = jqueryNode;
 		this.menuElements = [];
 		this.underline = null;
@@ -14,6 +14,7 @@ var MainMenu = (function() {
 		this.screenGroupTarget = null;
 
 		this.init();
+		this.bindEvents();
 	}
 
 	MainMenu.prototype.init = function() {
@@ -27,6 +28,33 @@ var MainMenu = (function() {
 			menuElement.index = i;
 			self.menuElements.push(menuElement);
 		});
+	};
+
+	MainMenu.prototype.bindEvents = function() {
+		var self = this;
+
+		this.$.find('.main-menu-mobile').on('click', function(e) {
+			e.preventDefault();
+
+			self.openMobileMenu();
+		});
+	};
+
+	MainMenu.prototype.openMobileMenu = function() {
+		var $body = $('body');
+		var $header = this.$.parent();
+		var $menuContent = this.$.find('.menu-content');
+		if ($header.hasClass('open')) {
+			$menuContent.fadeOut(400, function() {
+				$header.removeClass('open');
+				$body.css('overflow-y', 'scroll');
+			});
+		}
+		else {
+			$header.addClass('open');
+			$body.css('overflow-y', 'hidden');
+			$menuContent.fadeIn();
+		}
 	};
 
 	MainMenu.prototype.getUnderlineWidth = function () {
