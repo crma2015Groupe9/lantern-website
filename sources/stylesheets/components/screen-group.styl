@@ -35,7 +35,7 @@
 	left 0
 	width 100%
 	top 100%
-	
+
 .csstransitions
 	.screen-sub-part
 		.screen-sub-part-outer-wrapper.movable
@@ -58,15 +58,15 @@
 	width 100%
 	overflow hidden
 	transition top 0.4s ease-out
-	
+
 	img
 		position: absolute
 		top 0
 		left 0
-	
+
 	&.showed
 		top 0
-		
+
 	&.hidden-on-top
 		top -100%
 
@@ -104,6 +104,8 @@
 		margin-top 15%
 		padding: 0 10px 0 10px
 
-@media screen and (max-width: 720px)
+@media screen and (max-width: 768px)
+	.screen-background
+		margin-top : (55 - 1)px
 	.section-container
 		margin-top 25%
