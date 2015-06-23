@@ -100,7 +100,7 @@ var ScreenSubPart = (function() {
 				if (this.index === 0) {
 					this.parentScreen.unactive();
 				}
-				
+
 				if (this.elementsToActive) {
 					this.elementsToActive.removeClass('unactive');
 					this.elementsToActive.removeClass('active');
@@ -108,14 +108,15 @@ var ScreenSubPart = (function() {
 			}
 
 			if(this.animatedPicto){
-				if (scrollPositionInPercentage >= settings.screenSubPartLimitDisappear+15) {
-					this.animatedPicto.stop();
+				if (scrollPositionInPercentage >= settings.screenSubPartLimitDisappear) {
+					this.animatedPicto.reverse();
 				}
 				else if(scrollPositionInPercentage >= settings.screenSubPartLimitAppear){
+					this.animatedPicto.unreverse();
 					this.animatedPicto.play();
 				}
-				else if(scrollPositionInPercentage <= settings.screenSubPartLimitAppear-15){
-					this.animatedPicto.stop();
+				else if(scrollPositionInPercentage <= settings.screenSubPartLimitAppear){
+					this.animatedPicto.reverse();
 				}
 			}
 

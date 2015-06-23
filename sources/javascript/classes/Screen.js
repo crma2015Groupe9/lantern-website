@@ -103,7 +103,7 @@ var Screen = (function() {
 	Screen.prototype.updateScrollPosition = function (scrollPosition) {
 		var scrollPositionInPercentage = scrollPosition/this.$.height()*100;
 		/*scrollPosition > -45 */ //scrollPositionInPercentage > this.scrollLimitAppear ? this.active() : this.unactive();
-		scrollPositionInPercentage >= this.scrollLimitAppear+15 ? this.activeBlur() : this.unactiveBlur();
+		scrollPositionInPercentage >= this.scrollLimitAppear+20 ? this.activeBlur() : this.unactiveBlur();
 
 
 		//for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
@@ -122,6 +122,7 @@ var Screen = (function() {
 	Screen.prototype.active = function (active) {
 		active === false ? this.$.removeClass('active') : this.$.addClass('active');
 		for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
+			//this.backgrounds[i].activeTransition();
 			this.backgrounds[i].$.addClass('showed');
 		}
 

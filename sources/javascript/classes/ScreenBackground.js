@@ -34,6 +34,7 @@ var ScreenBackground = (function() {
 
 		this.originalBackgroundImageSize = null;
 
+
 		this.init();
 	}
 
@@ -48,13 +49,15 @@ var ScreenBackground = (function() {
 	ScreenBackground.prototype.setBackgroundImage = function (image) {
 		this.$.append(image);
 		this.$.find('img').last().addClass('simple-view');
+	}
 
+	ScreenBackground.prototype.setBackgroundImageBlured = function(image) {
 		if (this.mustBlurWhenActive()) {
-			this.$.append($(image).clone());
+			this.$.append($(image));
 			this.blurView = this.$.find('img').last();
 			this.blurView.addClass('blur-view');
 		}
-	}
+	};
 
 	ScreenBackground.prototype.screenResize = function (width, height) {
 		var imageBase = this.$.find('img').first();
@@ -99,7 +102,7 @@ var ScreenBackground = (function() {
 				this.blurView.css('left', (width-imageBase.width())/2+'px');
 			}
 			else if(this.resizeType === 'height'){
-				console.log('TO DO');
+				//console.log('TO DO');
 			}
 		}
 	}

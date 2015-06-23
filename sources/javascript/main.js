@@ -28,8 +28,10 @@
 /*-------------------*/
 /*-------------------*/
 
+var loader = null;
+
 var preloadImages = function preloadImages() {
-	var loader = new PxLoader();
+	var imgLoader = new PxLoader();
 	var screenBackgrounds = ScreenBackground.list();
 
 	var backgroundImgList = [];
@@ -37,25 +39,41 @@ var preloadImages = function preloadImages() {
 	$(screenBackgrounds).each(function (i,e) {
 		var bg = e.$;
 		var imageLinkToLoad = bg.data('image-url');
+		var imageBluredToLoad = bg.data('image-blured-url');
 		if (typeof imageLinkToLoad === "string") {
 			if (imageLinkToLoad.length > 0) {
-				backgroundImgList.push({
+				var toLoad = {
 					bg : e,
-					image :	loader.addImage(imageLinkToLoad)
-				});
+					image :	imgLoader.addImage(imageLinkToLoad)
+				};
+
+				if (typeof imageBluredToLoad === "string") {
+					if (imageBluredToLoad.length > 0) {
+						toLoad.imageBlured = imgLoader.addImage(imageBluredToLoad);
+					}
+				}
+
+				backgroundImgList.push(toLoad);
 			}
 		}
 	});
 
-	loader.addCompletionListener(function() {
+	imgLoader.addCompletionListener(function() {
 		for(var i=0, imax = backgroundImgList.length;i<imax;i++){
 			var background = backgroundImgList[i];
 			background.bg.setBackgroundImage(background.image);
+			if (background.imageBlured) {
+				background.bg.setBackgroundImageBlured(background.imageBlured);
+			}
 			background.bg.screenResize($(window).width(), $(window).height());
 		}
 	});
 
-	loader.start();
+	imgLoader.addProgressListener(function(e) {
+		loader.updateProgress(e.completedCount/e.totalCount*100)
+	}); 
+
+	imgLoader.start();
 };
 
 
@@ -131,6 +149,9 @@ var onDocumentReady = function onDocumentReady(){
 		scroll.toUp = newScrollPosition < scroll.position;
 		scroll.change = (scroll.toUp || scroll.toDown);
 		scroll.position = newScrollPosition;
+		if(resize.both){
+			scroll.change = true;
+		}
 	};
 
 	requestAnimationFrame(function requestAnimationFrameEvent() {
@@ -144,6 +165,9 @@ var onDocumentReady = function onDocumentReady(){
 		//screenGroup.onScroll(scroll);
 
 		screenGroup.update(time);
+		if(loader){
+			loader.update(time);
+		}
 
 		updateObjectFX(time.delta, resize.both);
 
@@ -155,12 +179,18 @@ var onDocumentReady = function onDocumentReady(){
 		mainMenu.onScroll(scroll);
 		screenGroup.onScroll(scroll);
 	});
+
+	updateScroll();
+	mainMenu.onScroll(scroll);
+	screenGroup.onScroll(scroll);
 };
 
 var main = function main() {
 	'use strict';
 
 	$(document).ready(function () {
+		loader = new Loader($('.loader'));
+
 		onDocumentReady();
 
 		preloadImages();

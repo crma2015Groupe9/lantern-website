@@ -23,6 +23,9 @@ var AnimatedPicto = (function() {
 		this.baseImageName = "";
 
 		this.loaded = false;
+		this.reversed = false;
+
+		this.loop = false;
 
 		this.init();
 
@@ -42,6 +45,8 @@ var AnimatedPicto = (function() {
 		this.endNumber = parseInt(this.$.data('animated-end'), 10);
 		this.numberOfDigit = parseInt(this.$.data('animated-number-of-digit'), 10);
 		this.duration = parseInt(this.$.data('animated-duration'), 10);
+
+		this.loop = (this.$.data('animation-loop') === true);
 
 		this.numberOfStep = this.endNumber - this.startNumber;
 
@@ -71,7 +76,7 @@ var AnimatedPicto = (function() {
 	}
 
 	AnimatedPicto.prototype.start = function () {
-		this.reset;
+		this.reset();
 		this.play();
 	};
 
@@ -121,8 +126,9 @@ var AnimatedPicto = (function() {
 	};
 
 	AnimatedPicto.prototype.update = function (time) {
-		var newTime = this.currentTime + (this.isPlaying ? time.delta : 0);
-		this.setTime(newTime >= this.duration ? this.duration : newTime);
+		var newTime = this.currentTime + (this.isPlaying ? time.delta : 0)*(this.reversed ? -1 : 1);
+
+		this.setTime(newTime >= this.duration ? (this.loop ? 0 : this.duration) : (newTime <= 0 ? (this.loop ? this.duration : 0) : newTime));
 	};
 
 	AnimatedPicto.prototype.setTime = function (newTime) {
@@ -138,6 +144,14 @@ var AnimatedPicto = (function() {
 
 	AnimatedPicto.prototype.previous = function () {
 		this.setImageForIndex(this.currentIndex-1);
+	};
+
+	AnimatedPicto.prototype.reverse = function() {
+		this.reversed = true;
+	};
+
+	AnimatedPicto.prototype.unreverse = function() {
+		this.reversed = false;
 	};
 
 	return AnimatedPicto;

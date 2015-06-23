@@ -1,0 +1,75 @@
+.loader
+	position fixed
+	display block
+	width 100%
+	height 100%
+	z-index 800
+	
+	transition z-index 0.6s linear 0.3s
+	
+	&.hidden
+		z-index 0
+	
+	.animated-picto
+		margin: auto
+		width : (277px/2)
+		height : (279px/2)
+		
+		.animated-picto-step
+			width : (277px/2)
+			height : (279px/2)
+
+.loader-background-part-top
+	position absolute
+	display block
+	height 50%
+	background-color : color.customBlue
+	width 100%
+	top 0
+	transition top 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0.3s
+	
+	.loader-background-part-top-inner-wrapper
+		position absolute
+		bottom 5px
+		width 100%
+	
+	&.hidden
+		top -100%
+
+.loader-background-part-bottom
+	position absolute
+	display block
+	height 50%
+	background-color : color.customBlue
+	width 100%
+	bottom 0
+	transition bottom 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0.3s
+	
+	.loader-background-part-bottom-inner-wrapper
+		position absolute
+		top 5px
+		width 100%
+		
+	&.hidden
+		bottom -100%
+
+.loader-progress-bar-wrapper
+	display block
+	width 250px
+	margin auto
+
+.loader-progress-bar
+	display block
+	max-width 100%
+	width 0%
+	height 4px
+	background-color white
+	margin auto
+	
+.loader-progress-indicator
+	text-align center
+	margin-top 22px
+	font_loader(18px)
+	letter-spacing 1px
+	display block
+	color white
