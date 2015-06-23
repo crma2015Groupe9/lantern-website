@@ -10,6 +10,9 @@ header
 	overflow hidden
 	position: relative
 
+.menu-content
+	dipslay block
+
 .main-menu-element
 	span(ratios = 1/6)
 	height : size_height.mainMenu
@@ -36,6 +39,7 @@ header
 	}
 
 .main-menu-element-underline
+	display block
 	width 148px
 	height 4px
 	background-color : color.mainMenuElementUnderline
@@ -48,8 +52,8 @@ header
 
 
 button.main-menu-mobile
-	width 70px
-	height 70px
+	width 54px
+	height 55px
 	border none
 	background: imageNamed('menu-arrow.png') no-repeat #FFF 0 -55px
 	display none
@@ -64,6 +68,11 @@ button.main-menu-mobile
 		.main-menu
 			height: 100%
 
+		button.main-menu-mobile
+			background-position 0 0
+
+	.main-menu-element-underline
+		display none
 	.menu-content
 		display none
 		background-color #FFF
@@ -71,9 +80,10 @@ button.main-menu-mobile
 	.main-menu-element
 		span(ratios = 6/6)
 		text-align left
+		height 55px
 
 		&.element
-			// display none
+			margin-top 30px
 
 			.main-menu-element-label
 				width 168px

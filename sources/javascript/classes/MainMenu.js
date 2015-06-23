@@ -41,15 +41,19 @@ var MainMenu = (function() {
 	};
 
 	MainMenu.prototype.openMobileMenu = function() {
+		var $body = $('body');
 		var $header = this.$.parent();
 		var $menuContent = this.$.find('.menu-content');
 		if ($header.hasClass('open')) {
-			$menuContent.fadeOut();
-			$header.removeClass('open');
+			$menuContent.fadeOut(400, function() {
+				$header.removeClass('open');
+				$body.css('overflow-y', 'scroll');
+			});
 		}
 		else {
-			$menuContent.fadeIn();
 			$header.addClass('open');
+			$body.css('overflow-y', 'hidden');
+			$menuContent.fadeIn();
 		}
 	};
 

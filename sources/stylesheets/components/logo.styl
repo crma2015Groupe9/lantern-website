@@ -1,16 +1,12 @@
-.logo
-	&.lantern
-		picto('logo.png', size_height.logo)
-
 .brand-inline-block
 	margin auto
 	width 140px
 	padding-top 14px
-	
+
 	.logo
 		float left
 		margin-right 20px
-	
+
 	.brand-name
 		font_brand_name(18px)
 		text-transform lowercase
@@ -20,14 +16,18 @@
 			color : color.mainMenuElementBrandName
 			text-decoration : none
 		}
-		
+
 @media screen and (max-width: 920px)
 	.brand-inline-block
 		margin 0 0 0 15px
 		.brand-name
 			display none
-			
+
 @media screen and (max-width: 768px)
 	.brand-inline-block
+		padding-top 8px
 		.brand-name
 			display block
+		.logo img
+			width 40px
+			height 40px
