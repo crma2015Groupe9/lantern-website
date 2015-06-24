@@ -71,7 +71,7 @@ var preloadImages = function preloadImages() {
 
 	imgLoader.addProgressListener(function(e) {
 		loader.updateProgress(e.completedCount/e.totalCount*100)
-	}); 
+	});
 
 	imgLoader.start();
 };
@@ -189,7 +189,7 @@ var main = function main() {
 	'use strict';
 
 	$(document).ready(function () {
-		loader = new Loader($('.loader'));
+		loader = new Loader($('.loader-website'));
 
 		onDocumentReady();
 

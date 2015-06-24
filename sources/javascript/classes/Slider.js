@@ -83,7 +83,6 @@ var Slider = (function() {
 		this.$.on('afterChange', function(event, slick, currentSlide, nextSlide) {
 			var $loader = $('div.loading .loader');
 			var width = $loader.width();
-
 			if (width == 0) {
 				self.animateLoader(false);
 			}
