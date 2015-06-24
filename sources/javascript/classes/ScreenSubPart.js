@@ -92,6 +92,7 @@ var ScreenSubPart = (function() {
 					this.elementsToActive.removeClass('unactive');
 					this.elementsToActive.addClass('active');
 				}
+				this.parentScreen.currentSupPartIndex = this.index;
 			}
 			else{
 				this.$.removeClass('hidden-on-top');

@@ -49,6 +49,7 @@ javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/pxloader-all.mi
 javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/modernizr.min.js'));
 javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/slick.min.js'));
 javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/TweenMax.min.js'));
+javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/jquery.mousewheel.min.js'));
 
 var javascriptsFilesToConcat = [];
 javascriptsFilesToConcat.push(path.join(sourcePath, 'javascript/classes/*.js'));

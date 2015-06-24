@@ -2,12 +2,12 @@
 	background-color: color.customBlue
 	
 	.screen-sub-part-inner-wrapper
-		span(ratio = 5/12)
-		shift(6/12)
-		align(direction = vertical)
+		span(ratio = 12/12)
+		align(direction = both)
 
 .home-text-container
-	margin -130px 0 0 -100px
+	align(direction = both)
+	margin-left 135px
 
 #watch-the-teaser
 	display block
@@ -21,15 +21,17 @@
 	text-decoration none
 
 .screen-home-background
-	align(direction = both)
-	
-	&.showed
-		top 50%
+	//align(direction = both)
+	//transition top 0.3s ease-in
+	//top -50%
+
+	/*&.showed
+		top 50%*/
 		
 .screen-home-background img
 	align(direction = both)
 
-#screen-home-background-right, #screen-home-background-left
+/*#screen-home-background-right, #screen-home-background-left
 	img{
 		align(direction = vertical)
 		max-height 563px
@@ -39,4 +41,4 @@
 	img{
 		left auto
 		right 0
-	}
+	}*/

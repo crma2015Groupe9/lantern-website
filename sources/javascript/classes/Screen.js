@@ -11,6 +11,7 @@ var Screen = (function() {
 		this.$ = jqueryNode;
 
 		this.index = 0;
+		this.currentSupPartIndex = 0;
 		this.parentScreenGroup = null;
 		this.backgrounds = [];
 
@@ -103,7 +104,7 @@ var Screen = (function() {
 	Screen.prototype.updateScrollPosition = function (scrollPosition) {
 		var scrollPositionInPercentage = scrollPosition/this.$.height()*100;
 		/*scrollPosition > -45 */ //scrollPositionInPercentage > this.scrollLimitAppear ? this.active() : this.unactive();
-		scrollPositionInPercentage >= this.scrollLimitAppear+20 ? this.activeBlur() : this.unactiveBlur();
+		//scrollPositionInPercentage >= this.scrollLimitAppear ? this.activeBlur() : this.unactiveBlur();
 
 
 		//for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
@@ -123,9 +124,14 @@ var Screen = (function() {
 		active === false ? this.$.removeClass('active') : this.$.addClass('active');
 		for(var i = 0, imax = this.backgrounds.length;i<imax;i++){
 			//this.backgrounds[i].activeTransition();
-			this.backgrounds[i].$.addClass('showed');
+			active === false ? this.backgrounds[i].$.removeClass('showed') : this.backgrounds[i].$.addClass('showed');
 		}
 
+		this.activeBlur(active);
+
+		if(active !== false){
+			this.parentScreenGroup.currentScreenIndex = this.index;
+		}
 		//active === false ? this.unmoveToUpNextScreen() : this.moveToUpNextScreen();
 		
 	};
@@ -139,13 +145,13 @@ var Screen = (function() {
 		}
 	};
 
-	Screen.prototype.nextScreen = function() {
+	/*Screen.prototype.nextScreen = function() {
 		var nextIndex = this.index + 1,
 			siblings = this.parentScreenGroup.screens,
 			nextScreen = siblings[nextIndex];
 
 		return nextScreen;
-	};
+	};*/
 
 	/*Screen.prototype.moveToUpNextScreen = function() {
 		var nextScreen = this.nextScreen();

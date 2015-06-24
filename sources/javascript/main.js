@@ -140,29 +140,98 @@ var onDocumentReady = function onDocumentReady(){
 		change : false,
 		toUp : false,
 		toDown : false,
-		position : 0
+		position : 0,
+		timeSinceLastChangeToDown : 150000,
+		timeSinceLastChangeToUp : 150000,
+		timeSinceLastChange : 150000,
+		updated : function () {
+			updateScroll();
+			return scroll;
+		}
+	};
+
+	var wheel = {
+		move : 0,
+		toUp : false,
+		toDown : false,
+		change : false,
+		timeSinceLastChange : 150000,
+		timeSinceLastChangeToUp : 150000,
+		timeSinceLastChangeToDown : 150000,
+		debounce : function (delay) {
+			return {
+				toUp : false,
+				toDown : false,
+				change : false
+			};
+		}
+	};
+
+	$('body').mousewheel(function(event) {
+		//console.log(screenGroup.currentScreenSubPartIsTheLast())
+		if(!screenGroup.currentScreenSubPartIsTheLast()){
+			event.preventDefault();
+		}
+
+		wheel.move += event.deltaY;
+	});
+
+	var updateWheel = function updateWheel() {
+		wheel.toUp = wheel.move > 0;
+		wheel.toDown = wheel.move < 0;
+		wheel.change = (wheel.toUp || wheel.toDown);
+
+		var toUp = wheel.toUp,
+			toDown = wheel.toDown,
+			change = wheel.change,
+			timeSinceLastChange = wheel.timeSinceLastChange,
+			timeSinceLastChangeToUp = wheel.timeSinceLastChangeToUp,
+			timeSinceLastChangeToDown = wheel.timeSinceLastChangeToDown;
+
+		wheel.debounce = function (delay) {
+			return {
+				toUp : (toUp && timeSinceLastChangeToUp >= delay),
+				toDown : (toDown && timeSinceLastChangeToDown >= delay),
+				change : (change && timeSinceLastChange >= delay)
+			};
+		};
+
+		wheel.change ? wheel.timeSinceLastChange = 0 : wheel.timeSinceLastChange += time.delta;
+		wheel.toUp ? wheel.timeSinceLastChangeToUp = 0 : wheel.timeSinceLastChangeToUp += time.delta;
+		wheel.toDown ? wheel.timeSinceLastChangeToDown = 0 : wheel.timeSinceLastChangeToDown += time.delta;
+
+		wheel.move = 0;
 	};
 
 	var updateScroll = function updateScroll() {
 		var newScrollPosition = $document.scrollTop();
-		scroll.toDown = newScrollPosition > scroll.position;
-		scroll.toUp = newScrollPosition < scroll.position;
+		scroll.toDown = (newScrollPosition > scroll.position);
+		scroll.toUp = (newScrollPosition < scroll.position);
 		scroll.change = (scroll.toUp || scroll.toDown);
-		scroll.position = newScrollPosition;
+
+		scroll.change ? scroll.timeSinceLastChange = 0 : scroll.timeSinceLastChange += time.delta;
+		scroll.toUp ? scroll.timeSinceLastChangeToUp = 0 : scroll.timeSinceLastChangeToUp += time.delta;
+		scroll.toDown ? scroll.timeSinceLastChangeToDown = 0 : scroll.timeSinceLastChangeToDown += time.delta;
+
+
 		if(resize.both){
 			scroll.change = true;
 		}
+
+		scroll.position = newScrollPosition;
 	};
 
 	requestAnimationFrame(function requestAnimationFrameEvent() {
 		updateTime();
 		updateResize();
-		//updateScroll();
+		updateScroll();
+		updateWheel();
 
-		//mainMenu.onScroll(scroll);
+		mainMenu.onScroll(scroll);
 
 		screenGroup.onResize(resize);
-		//screenGroup.onScroll(scroll);
+		screenGroup.onScroll(scroll);
+		screenGroup.onWheel(wheel);
 
 		screenGroup.update(time);
 		if(loader){
@@ -174,11 +243,11 @@ var onDocumentReady = function onDocumentReady(){
 		requestAnimationFrame(requestAnimationFrameEvent);
 	});
 
-	$( window ).scroll(function() {
+	/*$( window ).scroll(function() {
 		updateScroll();
 		mainMenu.onScroll(scroll);
 		screenGroup.onScroll(scroll);
-	});
+	});*/
 
 	updateScroll();
 	mainMenu.onScroll(scroll);

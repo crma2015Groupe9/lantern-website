@@ -77,7 +77,8 @@ var MainMenu = (function() {
 
 	MainMenu.prototype.selectScreen = function (screenIndex) {
 		//var documentBody = document.body || document.documentElement;
-		$('html, body').animate({scrollTop: this.screenGroupTarget.screens[screenIndex].$.offset().top}, 250);
+		//$('html, body').css({scrollTop: this.screenGroupTarget.screens[screenIndex].$.offset().top});
+		$('html, body').scrollTop(this.screenGroupTarget.screens[screenIndex].$.offset().top);
 	};
 
 	MainMenu.prototype.underlineElementMenuWithTargetID = function (targetID) {
