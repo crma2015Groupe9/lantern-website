@@ -105,10 +105,11 @@ var Loader = (function() {
 
 		window.setTimeout(function() {
 		  self.remove();
-		}, 16000);
+		}, 5000);
 	};
 
 	Loader.prototype.remove = function() {
+		this.animatedPicto.remove();
 		this.removed = true;
 		this.$.remove();
 	};

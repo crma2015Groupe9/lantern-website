@@ -64,12 +64,12 @@ var ScreenGroup = (function() {
 
 	ScreenGroup.prototype.onWheel = function(wheel) {
 		var windowHeight = $(window).height();
-		var thanksScreenScroll = this.$.height()-this.scrollPosition-windowHeight;
+		var thanksScreenScroll = this.$.height();
 
 		if (wheel.debounce(100).toDown && this.getCurrentScreenSubPartIndex() < this.numberOfScreenSubParts-1) {
 			this.goToNextSubPart();
 		}
-		else if (wheel.debounce(100).toUp && thanksScreenScroll >= windowHeight) {
+		else if (wheel.debounce(100).toUp/* && thanksScreenScroll >= windowHeight*/) {
 			this.goToPreviousSubPart();
 		}
 	};
@@ -101,6 +101,10 @@ var ScreenGroup = (function() {
 		return this.$.find('.screen-sub-part').eq(previousSubPartIndex);
 	};
 
+	ScreenGroup.prototype.getFirstScreenSubPart = function() {
+		return this.$.find('.screen-sub-part').eq(0);
+	};
+
 	ScreenGroup.prototype.goToScreenSubPart = function(subpart) {
 		$('html, body').scrollTop(subpart.offset().top)
 	};
@@ -111,6 +115,10 @@ var ScreenGroup = (function() {
 
 	ScreenGroup.prototype.goToNextSubPart = function() {
 		this.goToScreenSubPart(this.getNextScreenSubPart());
+	};
+
+	ScreenGroup.prototype.goToFirstSubPart = function() {
+		this.goToScreenSubPart(this.getFirstScreenSubPart());
 	};
 
 	ScreenGroup.prototype.goToPreviousSubPart = function() {

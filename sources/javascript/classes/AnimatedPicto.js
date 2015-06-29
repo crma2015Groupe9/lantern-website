@@ -1,13 +1,17 @@
 var AnimatedPicto = (function() {
 	'use strict';
 
+	var AnimatedPictoList = [];
+
 	function AnimatedPicto(jqueryNode) {
 		// enforces new
 		if (!(this instanceof AnimatedPicto)) {
 			return new AnimatedPicto(jqueryNode);
 		}
-		
+
 		this.$ = jqueryNode;
+
+		AnimatedPictoList.push(this);
 
 		this.imagesFolder = null;
 		this.imagesExtension = null;
@@ -23,13 +27,18 @@ var AnimatedPicto = (function() {
 		this.baseImageName = "";
 
 		this.loaded = false;
+		this.listed = false;
 		this.reversed = false;
+		this.removed = false;
 
 		this.loop = false;
 
 		this.init();
 
-		this.loadImages();
+		this.imageList = [];
+		this.listImages();
+
+		//this.loadImages();
 
 		this.setIndex(this.startNumber, true);
 	}
@@ -37,6 +46,7 @@ var AnimatedPicto = (function() {
 	var stringReplaceAt = function stringReplaceAt(string, index, character) {
 	    return string.substr(0, index) + character + string.substr(index+character.length);
 	};
+
 
 	AnimatedPicto.prototype.init = function() {
 		this.imagesFolder = this.$.data('animated-images-folder');
@@ -57,12 +67,26 @@ var AnimatedPicto = (function() {
 		this.isPlaying = true;
 	};
 
+	AnimatedPicto.prototype.getImageList = function() {
+		return this.imageList;
+	};
+
 	AnimatedPicto.prototype.loadImages = function () {
 		if (!this.loaded) {
 			for(var i = 0,imax=this.numberOfStep;i<=imax;i++){
 				this.loadImageForIndex(this.startNumber+i);
 			}
 			this.loaded = true;
+			this.$.addClass('loaded')
+		}
+	};
+
+	AnimatedPicto.prototype.listImages = function() {
+		if (!this.listed) {
+			for(var i = 0,imax=this.numberOfStep;i<=imax;i++){
+				this.listImageForIndex(this.startNumber+i);
+			}
+			this.listed = true;
 		}
 	};
 
@@ -86,7 +110,11 @@ var AnimatedPicto = (function() {
 
 	AnimatedPicto.prototype.loadImageForIndex = function (index) {
 		this.$.append('<div class="animated-picto-step '+this.getStepClassIdentifierForIndex(index)+'"></div>');
-		this.getStepForIndex(index).first().css('background-image', 'url('+this.getImageUrlForIndex(index)+')');
+		this.getStepForIndex(index).first().css('background-image', 'url(\''+this.getImageUrlForIndex(index)+'\')');
+	};
+
+	AnimatedPicto.prototype.listImageForIndex = function(index) {
+		this.imageList.push(this.getImageUrlForIndex(index));
 	};
 
 	AnimatedPicto.prototype.getStepForIndex = function (index) {
@@ -126,9 +154,11 @@ var AnimatedPicto = (function() {
 	};
 
 	AnimatedPicto.prototype.update = function (time) {
-		var newTime = this.currentTime + (this.isPlaying ? time.delta : 0)*(this.reversed ? -1 : 1);
+		if (this.removed === false) {
+			var newTime = this.currentTime + (this.isPlaying ? time.delta : 0)*(this.reversed ? -1 : 1);
 
-		this.setTime(newTime >= this.duration ? (this.loop ? 0 : this.duration) : (newTime <= 0 ? (this.loop ? this.duration : 0) : newTime));
+			this.setTime(newTime >= this.duration ? (this.loop ? 0 : this.duration) : (newTime <= 0 ? (this.loop ? this.duration : 0) : newTime));
+		}
 	};
 
 	AnimatedPicto.prototype.setTime = function (newTime) {
@@ -152,6 +182,15 @@ var AnimatedPicto = (function() {
 
 	AnimatedPicto.prototype.unreverse = function() {
 		this.reversed = false;
+	};
+
+	AnimatedPicto.list = function () {
+		return AnimatedPictoList;
+	};
+
+	AnimatedPicto.prototype.remove = function() {
+		this.$.remove();
+		this.removed = true;
 	};
 
 	return AnimatedPicto;

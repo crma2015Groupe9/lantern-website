@@ -33,8 +33,10 @@ var loader = null;
 var preloadImages = function preloadImages() {
 	var imgLoader = new PxLoader();
 	var screenBackgrounds = ScreenBackground.list();
+	var animatedPictos = AnimatedPicto.list();
 
 	var backgroundImgList = [];
+	var animatedPictoImageList = {};
 
 	$(screenBackgrounds).each(function (i,e) {
 		var bg = e.$;
@@ -58,6 +60,21 @@ var preloadImages = function preloadImages() {
 		}
 	});
 
+	$(animatedPictos).each(function(index, el) {
+		var allImages = el.getImageList();
+		var currentAnimated = {
+			numberOfImage : allImages.length,
+			numberOfImageLoaded : 0,
+			animated : el
+		};
+
+		$(allImages).each(function(i, e) {
+			imageLink = e;
+			animatedPictoImageList[imageLink] = currentAnimated;
+			imgLoader.addImage(imageLink);
+		});
+	});
+
 	imgLoader.addCompletionListener(function() {
 		for(var i=0, imax = backgroundImgList.length;i<imax;i++){
 			var background = backgroundImgList[i];
@@ -70,6 +87,15 @@ var preloadImages = function preloadImages() {
 	});
 
 	imgLoader.addProgressListener(function(e) {
+		var imageName = e.resource.getName();
+		var animatedPictoImage = animatedPictoImageList[imageName];
+		if(typeof animatedPictoImage === "object"){
+			animatedPictoImage.numberOfImageLoaded++;
+			if (animatedPictoImage.numberOfImageLoaded === animatedPictoImage.numberOfImage) {
+				animatedPictoImage.animated.loadImages();
+			}
+		}
+
 		loader.updateProgress(e.completedCount/e.totalCount*100)
 	});
 
@@ -252,6 +278,8 @@ var onDocumentReady = function onDocumentReady(){
 	updateScroll();
 	mainMenu.onScroll(scroll);
 	screenGroup.onScroll(scroll);
+
+	screenGroup.goToFirstSubPart();
 };
 
 var main = function main() {

@@ -33,6 +33,7 @@ var ScreenBackground = (function() {
 		this.blurView = null;
 
 		this.originalBackgroundImageSize = null;
+		this.jsCenteredHorizontal = null;
 
 
 		this.init();
@@ -40,6 +41,8 @@ var ScreenBackground = (function() {
 
 	ScreenBackground.prototype.init = function() {
 		this.resizeType = this.$.data('resize-type');
+		this.jsCenteredHorizontal = this.$.hasClass('js-centered-horizontal');
+
 	};
 
 	ScreenBackground.prototype.mustBlurWhenActive = function () {
@@ -104,6 +107,10 @@ var ScreenBackground = (function() {
 			else if(this.resizeType === 'height'){
 				//console.log('TO DO');
 			}
+		}
+
+		if (this.jsCenteredHorizontal) {
+			this.$.css('left', ((width - this.$.width()) / 2)+'px');
 		}
 	}
 
