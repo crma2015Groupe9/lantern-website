@@ -2,6 +2,7 @@ var AnimatedPicto = (function() {
 	'use strict';
 
 	var AnimatedPictoList = [];
+	var AnimatedPictoCounter = 0;
 
 	function AnimatedPicto(jqueryNode) {
 		// enforces new
@@ -10,6 +11,7 @@ var AnimatedPicto = (function() {
 		}
 
 		this.$ = jqueryNode;
+		this.uniqueID = AnimatedPictoCounter++;
 
 		AnimatedPictoList.push(this);
 
@@ -184,13 +186,35 @@ var AnimatedPicto = (function() {
 		this.reversed = false;
 	};
 
+	AnimatedPicto.prototype.remove = function() {
+		this.$.remove();
+
+		var all = AnimatedPicto.list();
+		var newAll = [];
+		var self = this;
+
+		$(all).each(function(index, el) {
+			if(el.uniqueID !== self.uniqueID){
+				newAll.push(el);
+			}
+		});
+
+		AnimatedPictoList = newAll;
+
+		this.removed = true;
+	};
+
 	AnimatedPicto.list = function () {
 		return AnimatedPictoList;
 	};
 
-	AnimatedPicto.prototype.remove = function() {
-		this.$.remove();
-		this.removed = true;
+	
+	AnimatedPicto.updateAll = function(time){
+		var all = AnimatedPicto.list();
+
+		$(all).each(function(index, el) {
+			el.update(time);
+		});
 	};
 
 	return AnimatedPicto;

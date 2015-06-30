@@ -55,7 +55,7 @@ var ScreenSubPart = (function() {
 
 	ScreenSubPart.prototype.update = function (time) {
 		if (this.animatedPicto) {
-			this.animatedPicto.update(time);
+			//this.animatedPicto.update(time);
 		}
 	};
 

@@ -50,6 +50,7 @@ javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/modernizr.min.j
 javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/slick.min.js'));
 javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/TweenMax.min.js'));
 javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/jquery.mousewheel.min.js'));
+//javascriptVendors.push(path.join(sourcePath, 'javascript/vendors/froogaloop.js'));
 
 var javascriptsFilesToConcat = [];
 javascriptsFilesToConcat.push(path.join(sourcePath, 'javascript/classes/*.js'));

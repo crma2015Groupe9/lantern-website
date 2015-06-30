@@ -18,6 +18,7 @@ var Loader = (function() {
 		this.top = null;
 		this.bottom = null;
 		this.animatedPicto = null;
+		this.animatedPicto2 = null;
 
 		this.previousProgress = 0;
 		this.removed = false;
@@ -38,7 +39,9 @@ var Loader = (function() {
 		this.bottom = this.$.find('.loader-background-part-bottom').first();
 
 		this.animatedPicto = new AnimatedPicto(this.$.find('.animated-picto').first());
+		this.animatedPicto2 = new AnimatedPicto(this.$.find('.animated-picto').eq(1));
 		this.animatedPicto.play();
+		this.animatedPicto2.play();
 	};
 
 	Loader.prototype.updateProgress = function(percentageProgress) {
@@ -47,7 +50,7 @@ var Loader = (function() {
 
 	Loader.prototype.update = function (time) {
 		if(!this.removed){
-			this.animatedPicto.update(time);
+			//this.animatedPicto.update(time);
 			var currentProgress = this.currentProgress;
 
 			currentProgress += time.delta/1000 * this.speedProgress;
@@ -86,7 +89,6 @@ var Loader = (function() {
 			progressBarWidth = 0;
 		}
 
-		//console.log(progressBarWidth)
 		this.progressBar.css('width', progressBarWidth+'%');
 	};
 
@@ -105,11 +107,18 @@ var Loader = (function() {
 
 		window.setTimeout(function() {
 		  self.remove();
-		}, 5000);
+		}, 6000);
 	};
 
 	Loader.prototype.remove = function() {
-		this.animatedPicto.remove();
+		if (this.animatedPicto) {
+			this.animatedPicto.remove();
+		}
+
+		if (this.animatedPicto2) {
+			this.animatedPicto2.remove();
+		}
+
 		this.removed = true;
 		this.$.remove();
 	};
