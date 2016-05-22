@@ -3,7 +3,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <metadata></metadata>
 <defs>
-<font id="wigrum_webregular" horiz-adv-x="1136" >
+<font id="wigrumweb" horiz-adv-x="1136" >
 <font-face units-per-em="2048" ascent="1536" descent="-512" />
 <missing-glyph horiz-adv-x="509" />
 <glyph unicode="&#xfb01;" horiz-adv-x="1288" d="M84 858v166h143v80q0 177 81.5 265.5t236.5 88.5q72 0 127 -22v-179q-64 31 -113 31q-69 0 -108 -44.5t-39 -121.5v-98h254v-166h-254v-858h-185v858h-143zM905 1233v201h205v-201h-205zM918 0v1024h182v-1024h-182z" />
@@ -866,4 +866,4 @@
 <hkern g1="slash" 	g2="s" 	k="102" />
 <hkern g1="trademark" 	g2="period,ellipsis" 	k="225" />
 </font>
-</defs></svg> 
+</defs></svg>
