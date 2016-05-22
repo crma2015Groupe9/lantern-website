@@ -1,0 +1,4 @@
+- 12 écrans en tout - quand on scroll de l'accueil jusqu'aux crédits est-ce que ça ne va pas être trop long ?
+- Pas de titre pour les pages Object et Application, on ne regarde pas forcément le menu
+- Menu un peu gros, pas fan du logo rond
+- Dernière page bizarre avec bleu qui dépasse
