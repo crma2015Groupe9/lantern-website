@@ -1,43 +1,54 @@
 @font-face {
   font-family: 'Wigrum';
-  src: url('../../fonts/wigrum-regular/wigrum-regular.eot');
-  src: url('../../fonts/wigrum-regular/wigrum-regular.eot?#iefix') format('embedded-opentype'),
-       url('../../fonts/wigrum-regular/wigrum-regular.woff') format('woff'),
-       url('../../fonts/wigrum-regular/wigrum-regular.ttf') format('truetype'),
-       url('../../fonts/wigrum-regular/wigrum-regular.svg#wigrumregular') format('svg');
+  src: url('../fonts/wigrum-regular/wigrum-regular.eot');
+  src: url('../fonts/wigrum-regular/wigrum-regular.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/wigrum-regular/wigrum-regular.woff') format('woff'),
+       url('../fonts/wigrum-regular/wigrum-regular.ttf') format('truetype'),
+       url('../fonts/wigrum-regular/wigrum-regular.svg#wigrumregular') format('svg');
   font-style: normal;
   font-weight: 400;
 }
 
 @font-face {
   font-family: 'Wigrum';
-  src: url('../../fonts/wigrum-light/wigrum-light.eot');
-  src: url('../../fonts/wigrum-light/wigrum-light.eot?#iefix') format('embedded-opentype'),
-       url('../../fonts/wigrum-light/wigrum-light.woff') format('woff'),
-       url('../../fonts/wigrum-light/wigrum-light.ttf') format('truetype'),
-       url('../../fonts/wigrum-light/wigrum-light.svg#wigrumlight') format('svg');
+  src: url('../fonts/wigrum-light/wigrum-light.eot');
+  src: url('../fonts/wigrum-light/wigrum-light.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/wigrum-light/wigrum-light.woff') format('woff'),
+       url('../fonts/wigrum-light/wigrum-light.ttf') format('truetype'),
+       url('../fonts/wigrum-light/wigrum-light.svg#wigrumlight') format('svg');
   font-style: normal;
   font-weight: 200;
 }
 
 @font-face {
   font-family: 'Wigrum';
-  src: url('../../fonts/wigrum-medium/wigrum-medium.eot');
-  src: url('../../fonts/wigrum-medium/wigrum-medium.eot?#iefix') format('embedded-opentype'),
-       url('../../fonts/wigrum-medium/wigrum-medium.woff') format('woff'),
-       url('../../fonts/wigrum-medium/wigrum-medium.ttf') format('truetype'),
-       url('../../fonts/wigrum-medium/wigrum-medium.svg#wigrummedium') format('svg');
+  src: url('../fonts/wigrum-medium/wigrum-medium.eot');
+  src: url('../fonts/wigrum-medium/wigrum-medium.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/wigrum-medium/wigrum-medium.woff') format('woff'),
+       url('../fonts/wigrum-medium/wigrum-medium.ttf') format('truetype'),
+       url('../fonts/wigrum-medium/wigrum-medium.svg#wigrummedium') format('svg');
   font-style: normal;
   font-weight: 500;
 }
 
 @font-face {
+  font-family: 'Wigrum';
+  src: url('../fonts/wigrum-bold/wigrum-bold.eot');
+  src: url('../fonts/wigrum-bold/wigrum-bold.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/wigrum-bold/wigrum-bold.woff') format('woff'),
+       url('../fonts/wigrum-bold/wigrum-bold.ttf') format('truetype'),
+       url('../fonts/wigrum-bold/wigrum-bold.svg#wigrumbold') format('svg');
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
   font-family: 'Wigrum Web';
-  src: url('../../fonts/wigrum-web/wigrum-web.eot');
-  src: url('../../fonts/wigrum-web/wigrum-web.eot?#iefix') format('embedded-opentype'),
-       url('../../fonts/wigrum-web/wigrum-web.woff') format('woff'),
-       url('../../fonts/wigrum-web/wigrum-web.ttf') format('truetype'),
-       url('../../fonts/wigrum-web/wigrum-web.svg#wigrumweb') format('svg');
+  src: url('../fonts/wigrum-web/wigrum-web.eot');
+  src: url('../fonts/wigrum-web/wigrum-web.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/wigrum-web/wigrum-web.woff') format('woff'),
+       url('../fonts/wigrum-web/wigrum-web.ttf') format('truetype'),
+       url('../fonts/wigrum-web/wigrum-web.svg#wigrumweb') format('svg');
   font-style: normal;
   font-weight: 400;
 }
