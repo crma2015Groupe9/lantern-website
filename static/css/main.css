@@ -20,6 +20,11 @@ section.main-section {
     height: 100%;
 }
 
+.section-title {
+    font-weight: 200;
+    font-size: 5.2em;
+}
+
 
 /***********************
 *          NAV         *
@@ -75,31 +80,31 @@ nav.main-nav .main-nav__logo-title {
 ************************/
 
 section.home {
-    background: url('../images/home-background.png') no-repeat center calc(50% + 53px) #4b499c;
+    background: url('../images/home-background.png') no-repeat center calc(50% + 53px) #4b499c fixed;
 }
 
-.home-text {
+.home__content {
     max-width: 445px;
     position: absolute;
     top: calc(50% - 135px);
     left: calc(50% - 75px);
 }
 
-.home-text__title {
+.home__title {
     font-family: "Wigrum", Arial, sans-serif;
     font-size: 6.2em;
     letter-spacing: 0.03em;
     color: #f1f1ff;
 }
 
-.home-text__teaser-link {
+.home__teaser-link {
     display: inline-block;
     margin-top: 20px;
     font-size: 2.2em;
     color: #f1f1ff;
 }
 
-.home-text__teaser-link::after {
+.home__teaser-link::after {
     content: "";
     display: inline-block;
     width: 30px;
@@ -108,4 +113,121 @@ section.home {
     left: 17px;
     top: 2px;
     background: url('../images/right-arrow.png');
+}
+
+/***********************
+*         STEP         *
+************************/
+
+section.step {
+    background: url('../images/steps-background.jpg') no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.step__content {
+    max-width: 570px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #4b499c;
+}
+
+.step__title {
+    font-size: 3.6em;
+}
+
+.step__description {
+    margin-top: 18px;
+    font-size: 2.0em;
+    line-height: 30px;
+    letter-spacing: 0.03em;
+}
+
+/***********************
+*         TEAM         *
+************************/
+
+.team__title {
+    text-align: center;
+    color: #4b499c;
+}
+
+.team__content {
+    margin-top: 90px;
+    display: flex;
+    justify-content: center;
+}
+
+.team__person {
+    margin-left: 28px;
+    text-align: center;
+}
+.team__person:first-child {
+    margin-left: 0;
+}
+
+.team-person__description {
+    margin: 23px 0 20px 0;
+    font-size: 1.9em;
+    line-height: 1.4em;
+    color: #4b499c;
+}
+
+.team-person__social-link {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    margin: 0 8px;
+    background-color: #e9efff;
+    border-radius: 22px;
+}
+.team-person__social-link:hover {
+    background-color: #f7f9ff;
+}
+
+/***********************
+*        THANKS        *
+************************/
+
+section.thanks {
+    background-color: #4b499c;
+    color: #FFF;
+}
+
+section.thanks p {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 2.0em;
+}
+
+.thanks__title {
+    margin-bottom: 55px;
+    text-align: center;
+}
+
+.thanks__text {
+    margin-bottom: 50px;
+}
+
+.thanks__text p:first-child {
+    margin-bottom: 40px;
+}
+
+.thanks__credits {
+    text-align: center;
+}
+
+.thanks__credits a {
+    display: inline-block;
+    margin: 0 28px;
+    vertical-align: middle;
+}
+
+section.thanks .thanks-credits__text {
+    margin-top: 50px;
 }
