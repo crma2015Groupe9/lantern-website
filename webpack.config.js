@@ -1,4 +1,4 @@
-var path = require('path')
+var path = require('path');
 
 module.exports = {
     entry: {
@@ -15,16 +15,18 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /nodes_modules/,
-                loaders: 'babel!eslint',
-                preset: 'es2015'
+                loader: 'babel',
+                query: {
+                    presets: 'es2015'
+                }
             },
             {
                 test: /\.css$/,
-                loaders: 'style!css'
+                loader: 'style!css'
             },
             {
                 test: /\.scss$/,
-                loaders: 'style!css!autoprefixer!sass'
+                loader: 'style!css!autoprefixer!sass'
             }
         ]
     }

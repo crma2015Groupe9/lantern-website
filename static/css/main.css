@@ -27,25 +27,25 @@ section.main-section {
 
 
 /***********************
-*          NAV         *
+*          MENU         *
 ************************/
 
-nav.main-nav {
+nav.menu {
     position: fixed;
     width: 100%;
     background-color: #FFF;
 }
 
-nav.main-nav ul {
+nav.menu ul {
     display: flex;
 }
 
-nav.main-nav li {
+nav.menu li {
     width: calc(100%/6);
     vertical-align: middle;
 }
 
-nav.main-nav a {
+nav.menu a {
     display: inline-block;
     width: 100%;
     height: 70px;
@@ -56,22 +56,33 @@ nav.main-nav a {
     color: #4b499c;
 }
 
-nav.main-nav .main-nav__logo-link {
+nav.menu .menu__logo-link {
     background-color: #4b499c;
 }
 
-nav.main-nav .main-nav__logo-link img {
+nav.menu .menu__logo-link img {
     vertical-align: middle;
     margin-right: 15px;
     position: relative;
     top: -3px;
 }
 
-nav.main-nav .main-nav__logo-title {
+nav.menu .menu__logo-title {
     display: inline-block;
     font-weight: 600;
     letter-spacing: 0.12em;
     color: #eae9ff;
+}
+
+nav.menu .menu__underline {
+    width: 148px;
+    height: 4px;
+    margin: 0;
+    border: none;
+    background-color: red;
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
 
 
