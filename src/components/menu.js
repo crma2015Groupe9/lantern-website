@@ -1,4 +1,5 @@
 import Component from './component';
+import TweenLite from 'gsap';
 import css from 'dom-css';
 
 export default class Menu extends Component {
@@ -21,8 +22,9 @@ export default class Menu extends Component {
 
     selectItem(event) {
         let item = event.target;
-        let posX = item.offsetLeft;
-        css(this.underline, 'left', posX);
+        let itemCenterX = item.offsetLeft + item.offsetWidth / 2;
+        let underlineCenterX = itemCenterX - this.underline.offsetWidth / 2;
+        TweenLite.to(this.underline, 0.4, {'left': underlineCenterX, ease: Power2.easeOut});
     }
 
 }
