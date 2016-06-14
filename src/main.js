@@ -1,15 +1,18 @@
 import Menu from './components/menu';
+import Concept from './components/concept';
 
 class App {
 
     constructor() {
         this.menu = new Menu('nav.menu');
+        this.concept = new Concept(['.concept__picto--problem', '.concept__picto--solution', '.concept__picto--lantern']);
 
         this.init();
     }
 
     init() {
         this.menu.init();
+        this.concept.init();
     }
 
 }

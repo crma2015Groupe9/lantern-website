@@ -8,13 +8,14 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/dist/'
     },
     module: {
         loaders: [
             {
                 test: /\.js$/,
-                exclude: /nodes_modules/,
+                exclude: /node_modules/,
                 loader: 'babel',
                 query: {
                     presets: 'es2015'
