@@ -30,5 +30,10 @@ module.exports = {
                 loader: 'style!css!autoprefixer!sass'
             }
         ]
+    },
+    resolve: {
+        alias: {
+            'ScrollToPlugin': path.join(__dirname, 'node_modules/gsap/src/minified/plugins/ScrollToPlugin.min.js')
+        }
     }
 }

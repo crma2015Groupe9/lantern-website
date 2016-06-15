@@ -1,6 +1,7 @@
 import Component from './component';
 import TweenLite from 'gsap';
 import css from 'dom-css';
+import scrollTo from 'ScrollToPlugin';
 
 export default class Menu extends Component {
 
@@ -21,10 +22,17 @@ export default class Menu extends Component {
     }
 
     selectItem(event) {
+        event.preventDefault();
+
         let item = event.target;
         let itemCenterX = item.offsetLeft + item.offsetWidth / 2;
         let underlineCenterX = itemCenterX - this.underline.offsetWidth / 2;
         TweenLite.to(this.underline, 0.4, {'left': underlineCenterX, ease: Power2.easeOut});
+
+        let target = item.dataset.target;
+        let section = document.querySelector('.' + target);
+        let top = section.offsetTop;
+        TweenLite.to(window, 0.7, {scrollTo: {y: top}, ease: Power2.easeOut});
     }
 
 }
