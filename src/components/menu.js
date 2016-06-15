@@ -1,6 +1,5 @@
 import Component from './component';
 import TweenLite from 'gsap';
-import css from 'dom-css';
 import scrollTo from 'ScrollToPlugin';
 
 export default class Menu extends Component {
