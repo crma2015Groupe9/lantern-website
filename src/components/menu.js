@@ -21,10 +21,10 @@ export default class Menu extends Component {
         });
     }
 
-    selectItem(event) {
-        event.preventDefault();
+    selectItem(e) {
+        e.preventDefault();
 
-        let item = event.target;
+        let item = e.target;
         let itemCenterX = item.offsetLeft + item.offsetWidth / 2;
         let underlineCenterX = itemCenterX - this.underline.offsetWidth / 2;
         TweenLite.to(this.underline, 0.4, {'left': underlineCenterX, ease: Power2.easeOut});

@@ -5,7 +5,7 @@ class App {
 
     constructor() {
         this.menu = new Menu('nav.menu');
-        this.concept = new Concept(['.concept__picto--problem', '.concept__picto--solution', '.concept__picto--lantern']);
+        this.concept = new Concept(['.concept-problem', '.concept-solution', '.concept-lantern']);
 
         this.init();
     }
@@ -31,3 +31,8 @@ function ready(createApplication) {
 }
 
 ready(createApplication);
+
+// window.requestAnimationFrame(function() {
+//       doSomething(last_known_scroll_position);
+//       ticking = false;
+//     });
